@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsAppServer
+namespace WindowsFormsApp1
 {
     internal static class Program
     {

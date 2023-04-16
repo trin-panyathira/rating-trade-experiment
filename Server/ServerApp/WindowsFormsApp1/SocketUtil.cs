@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Collections;
-using static WindowsFormsAppServer.Constant;
+using static WindowsFormsApp1.Constant;
 
-namespace WindowsFormsAppServer
+namespace WindowsFormsApp1
 {
     internal class SocketUtil
     {
@@ -19,10 +19,11 @@ namespace WindowsFormsAppServer
 
         public static MemoryModel memoryModel = new MemoryModel();
 
+        #region Server
         public static void StartThreadServer()
         {
-            Thread t = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
-            t.Start();
+            Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
+            serverThread.Start();
         }
 
         public static void ExecuteServer()
@@ -113,18 +114,28 @@ namespace WindowsFormsAppServer
             }
         }
 
+        public static string DecidedResponseMessage(string str)
+        {
+            string result = null;
+
+            if (str == GET_QUALITY_LIST)
+            {
+                result = string.Join(",", memoryModel.getQualityList());
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Client
         public static void ConnectServer(String hostIPv4)
         {
             try
             {
-
                 // Establish the remote endpoint
                 // for the socket. This example
                 // uses port 11111 on the local
                 // computer.
-                //IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-                //IPAddress ipAddr = ipHost.AddressList[0];
-                //IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
                 ipAddr = IPAddress.Parse(hostIPv4);
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
 
@@ -194,6 +205,7 @@ namespace WindowsFormsAppServer
             }
 
         }
+        #endregion
 
         public static string GetLocalIPAddress()
         {
@@ -206,18 +218,6 @@ namespace WindowsFormsAppServer
                 }
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
-        }
-
-        public static string DecidedResponseMessage(string str) 
-        {
-            string result = null;
-
-            if (str == GET_QUALITY_LIST)
-            {
-                result = string.Join(",", memoryModel.getQualityList());
-            }
-
-            return result;
         }
     }
 }

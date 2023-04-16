@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static WindowsFormsAppServer.Constant;
+using static WindowsFormsApp1.Constant;
 
-namespace WindowsFormsAppServer
+namespace WindowsFormsApp1
 {
     public partial class ClientMainPage : Form
     {

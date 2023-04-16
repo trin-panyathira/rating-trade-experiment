@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsAppServer
+namespace WindowsFormsApp1
 {
     public partial class ServerMainPage : Form
     {
@@ -60,6 +60,11 @@ namespace WindowsFormsAppServer
                 qualityList.Add(quality);
             }
             SocketUtil.memoryModel.setQualityList(qualityList);
+        }
+
+        private void ServerMainPage_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

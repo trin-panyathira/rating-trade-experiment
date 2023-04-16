@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsAppServer
+﻿namespace WindowsFormsApp1
 {
     partial class ClientMainPage
     {

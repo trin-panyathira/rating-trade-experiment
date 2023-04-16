@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace WindowsFormsAppServer
+namespace WindowsFormsApp1
 {
     public partial class MainPage : Form
     {
@@ -49,6 +49,11 @@ namespace WindowsFormsAppServer
             ClientMainPage page = new ClientMainPage();
             this.Hide();
             page.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

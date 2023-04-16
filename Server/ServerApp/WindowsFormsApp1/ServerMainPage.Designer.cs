@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsAppServer
+﻿namespace WindowsFormsApp1
 {
     partial class ServerMainPage
     {
@@ -73,6 +73,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ServerMainPage";
             this.Text = "ServerMainPage";
+            this.Load += new System.EventHandler(this.ServerMainPage_Load_1);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
