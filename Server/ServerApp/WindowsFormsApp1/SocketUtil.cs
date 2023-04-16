@@ -8,20 +8,34 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Collections;
 using static WindowsFormsApp1.Constant;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WindowsFormsApp1
 {
     internal class SocketUtil
     {
-        private static int port = 10001;
+        private static int port_server = 10001;
+        private static int port_client = 10002;
         private static IPAddress ipAddr;
         private static Socket sender;
 
         public static MemoryModel memoryModel = new MemoryModel();
 
+        private static ServerMainPage serverMainPage = null;
+        private static ClientMainPage clientMainPage = null;
+        public static bool isServer = false;
+
         #region Server
-        public static void StartThreadServer()
+        public static void StartThreadServer(ServerMainPage page)
         {
+            serverMainPage = page;
+            Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
+            serverThread.Start();
+        }
+
+        public static void StartThreadServer(ClientMainPage page)
+        {
+            clientMainPage = page;
             Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
             serverThread.Start();
         }
@@ -34,12 +48,13 @@ namespace WindowsFormsApp1
             // running the application.
             String localIPv4 = GetLocalIPAddress();
             IPAddress ipAddr = IPAddress.Parse(localIPv4);
+            int port = isServer ? port_server : port_client;
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
 
             // Creation TCP/IP Socket using
             // Socket Class Constructor
             Socket listener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            Console.WriteLine("Server Address: {0} ", localIPv4);
+            Console.WriteLine("Server Address: {0}, Port: {1}", localIPv4, port);
 
             try
             {
@@ -87,7 +102,12 @@ namespace WindowsFormsApp1
                     data = data.Substring(0, data.Length - 1);
                     Console.WriteLine("Text received -> {0} ", data);
 
-                    string responseMsg = DecidedResponseMessage(data);
+                    string[] dataSplit = data.Split(':');
+                    string clientAddress = dataSplit[0];
+                    string instruction = dataSplit.Length > 1 ? dataSplit[1] : "";
+                    string value = dataSplit.Length > 2 ? dataSplit[2] : "";
+
+                    string responseMsg = DecidedResponseMessage(clientAddress, instruction, value);
                     Console.WriteLine("response message -> {0} ", responseMsg);
                     byte[] message = Encoding.ASCII.GetBytes(responseMsg);
 
@@ -111,13 +131,47 @@ namespace WindowsFormsApp1
             }
         }
 
-        public static string DecidedResponseMessage(string str)
+        public static string DecidedResponseMessage(string clientAddress, string instruction, string value)
         {
-            string result = null;
+            string result = "";
 
-            if (str == GET_QUALITY_LIST)
+            if (instruction == CONNECT)
             {
-                result = string.Join(",", memoryModel.getQualityList());
+                serverMainPage.addListBoxActivity(clientAddress + " is connected.");
+
+                serverMainPage.addListBoxUser(clientAddress);
+                result = "connect success.";
+            }
+            else if (instruction == DISCONNECT)
+            {
+                serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
+
+                serverMainPage.removeListBoxUser(clientAddress);
+                result = "disconnect success.";
+            }
+            else if (instruction == SET_QUALITY_LIST)
+            {
+                string[] values = value.Split(',');
+                int testRound = int.Parse(values[0]);
+                int experimentRound = int.Parse(values[1]);
+
+                // set testQuality
+                List<int> testQuality = new List<int>();
+                for (int i = 2; i < 2 + testRound; i++)
+                {
+                    testQuality.Add(int.Parse(values[i]));
+                }
+
+                // set experimentQuality
+                List<int> experimentQuality = new List<int>();
+                for (int i = 2 + testRound; i < values.Length; i++)
+                {
+                    experimentQuality.Add(int.Parse(values[i]));
+                }
+
+                Console.WriteLine("test quality: {0}", string.Join(",", testQuality));
+                Console.WriteLine("experiment quality: {0}", string.Join(",", experimentQuality));
+                result = "success";
             }
 
             return result;
@@ -125,8 +179,10 @@ namespace WindowsFormsApp1
         #endregion
 
         #region Client
-        public static void ConnectServer(String hostIPv4)
+        public static void SendMessageToHost(string hostIPv4, string instruction, string value)
         {
+            string message = GetLocalIPAddress() + ":" + instruction.Trim() + ":" + value.Trim() + ";";
+
             try
             {
                 // Establish the remote endpoint
@@ -134,6 +190,7 @@ namespace WindowsFormsApp1
                 // uses port 11111 on the local
                 // computer.
                 ipAddr = IPAddress.Parse(hostIPv4);
+                int port = isServer ? port_client : port_server;
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
 
                 // Creation TCP/IP Socket using
@@ -147,60 +204,52 @@ namespace WindowsFormsApp1
                 // We print EndPoint information
                 // that we are connected
                 Console.WriteLine("Socket connected to -> {0} ", sender.RemoteEndPoint.ToString());
+                try
+                {
+                    Console.WriteLine("Send message '{0}' to {1}", message, sender.RemoteEndPoint.ToString());
 
+                    // Creation of message that
+                    // we will send to Server
+                    byte[] messageSent = Encoding.ASCII.GetBytes(message);
+                    int byteSent = sender.Send(messageSent);
+
+                    // Data buffer
+                    byte[] messageReceived = new byte[102400];
+
+                    // We receive the message using
+                    // the method Receive(). This
+                    // method returns number of bytes
+                    // received, that we'll use to
+                    // convert them to string
+                    int byteRecv = sender.Receive(messageReceived);
+                    Console.WriteLine("Message from Server -> {0}", Encoding.ASCII.GetString(messageReceived, 0, byteRecv));
+
+                    //// Close Socket using
+                    //// the method Close()
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+                }
+                // Manage of Socket's Exceptions
+                catch (ArgumentNullException ane)
+                {
+
+                    Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+                }
+                catch (SocketException se)
+                {
+
+                    Console.WriteLine("SocketException : {0}", se.ToString());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                }
             }
             catch (Exception e)
             {
 
                 Console.WriteLine(e.ToString());
             }
-        }
-
-        public static void SendMessageToHost(String message)
-        {
-            message = message + ";";
-
-            try
-            {
-                Console.WriteLine("Send message '{0}' to {1}", message, sender.RemoteEndPoint.ToString());
-
-                // Creation of message that
-                // we will send to Server
-                byte[] messageSent = Encoding.ASCII.GetBytes(message);
-                int byteSent = sender.Send(messageSent);
-
-                // Data buffer
-                byte[] messageReceived = new byte[102400];
-
-                // We receive the message using
-                // the method Receive(). This
-                // method returns number of bytes
-                // received, that we'll use to
-                // convert them to string
-                int byteRecv = sender.Receive(messageReceived);
-                Console.WriteLine("Message from Server -> {0}", Encoding.ASCII.GetString(messageReceived, 0, byteRecv));
-
-                //// Close Socket using
-                //// the method Close()
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
-            }
-            // Manage of Socket's Exceptions
-            catch (ArgumentNullException ane)
-            {
-
-                Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
-            }
-            catch (SocketException se)
-            {
-
-                Console.WriteLine("SocketException : {0}", se.ToString());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unexpected exception : {0}", e.ToString());
-            }
-
         }
         #endregion
 

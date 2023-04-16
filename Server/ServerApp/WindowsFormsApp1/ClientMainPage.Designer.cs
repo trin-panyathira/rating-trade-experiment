@@ -70,6 +70,7 @@
             this.Name = "ClientMainPage";
             this.Text = "ClientMainPage";
             this.Load += new System.EventHandler(this.ClientMainPage_Load);
+            this.VisibleChanged += new System.EventHandler(this.ClientMainPage_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

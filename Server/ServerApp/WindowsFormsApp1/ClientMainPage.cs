@@ -23,12 +23,21 @@ namespace WindowsFormsApp1
 
         }
 
+        private void ClientMainPage_VisibleChanged(object sender, EventArgs e)
+        {
+            textBoxHostAddress.Text = "192.168.1.100";
+
+            // start sever
+            SocketUtil.isServer = false;
+            SocketUtil.StartThreadServer(this);
+        }
+
         private void buttonConnectServer_Click(object sender, EventArgs e)
         {
-            string hostAddress = textBoxHostAddress.Text; // 192.168.1.100
-            SocketUtil.ConnectServer(hostAddress);
+            string hostAddress = textBoxHostAddress.Text.Trim(); // 192.168.1.100
 
-            SocketUtil.SendMessageToHost(GET_QUALITY_LIST);
+            SocketUtil.SendMessageToHost(hostAddress, CONNECT, SocketUtil.GetLocalIPAddress());
+            //SocketUtil.SendMessageToHost(hostAddress, SET_QUALITY_LIST, "");
         }
     }
 }

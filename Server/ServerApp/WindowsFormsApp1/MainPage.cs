@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
 
         private void buttonServer_Click(object sender, EventArgs e)
         {
+            SocketUtil.isServer = true;
             ServerMainPage page = new ServerMainPage();
             this.Hide();
             page.Show();
@@ -34,6 +35,7 @@ namespace WindowsFormsApp1
 
         private void buttonClient_Click(object sender, EventArgs e)
         {
+            SocketUtil.isServer = false;
             ClientMainPage page = new ClientMainPage();
             this.Hide();
             page.Show();
