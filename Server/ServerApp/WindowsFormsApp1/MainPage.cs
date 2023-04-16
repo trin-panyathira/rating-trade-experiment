@@ -15,24 +15,12 @@ namespace WindowsFormsApp1
 {
     public partial class MainPage : Form
     {
-        //private int port = 10001;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {
-            new ExcelUtil().exportExcel();
-        }
-
-        private void MainPage_Shown(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MainPage_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }
@@ -49,11 +37,6 @@ namespace WindowsFormsApp1
             ClientMainPage page = new ClientMainPage();
             this.Hide();
             page.Show();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

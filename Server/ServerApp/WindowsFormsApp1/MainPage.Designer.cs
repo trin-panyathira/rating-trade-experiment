@@ -63,7 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(734, 366);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // MainPage
             // 
@@ -73,9 +72,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "MainPage";
             this.Text = "Server";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainPage_FormClosing);
             this.Load += new System.EventHandler(this.MainPage_Load);
-            this.Shown += new System.EventHandler(this.MainPage_Shown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
