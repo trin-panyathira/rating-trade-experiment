@@ -23,9 +23,11 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonConnectServer_Click(object sender, EventArgs e)
         {
-            SocketUtil.ConnectServer("192.168.1.100");
+            string hostAddress = textBoxHostAddress.Text; // 192.168.1.100
+            SocketUtil.ConnectServer(hostAddress);
+
             SocketUtil.SendMessageToHost(GET_QUALITY_LIST);
         }
     }

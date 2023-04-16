@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-
+            new ExcelUtil().exportExcel();
         }
 
         private void MainPage_Shown(object sender, EventArgs e)

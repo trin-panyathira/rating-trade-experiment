@@ -32,9 +32,6 @@ namespace WindowsFormsApp1
             // for the socket. Dns.GetHostName
             // returns the name of the host
             // running the application.
-            //IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-            //IPAddress ipAddr = ipHost.AddressList[0];
-            //IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
             String localIPv4 = GetLocalIPAddress();
             IPAddress ipAddr = IPAddress.Parse(localIPv4);
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
