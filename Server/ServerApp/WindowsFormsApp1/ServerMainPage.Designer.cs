@@ -31,11 +31,11 @@
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxTestRound = new System.Windows.Forms.TextBox();
-            this.textBoxExperimentRound = new System.Windows.Forms.TextBox();
             this.labelServerAddress = new System.Windows.Forms.Label();
+            this.textBoxExperimentRound = new System.Windows.Forms.TextBox();
+            this.textBoxTestRound = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxActivity = new System.Windows.Forms.ListBox();
@@ -79,14 +79,28 @@
             this.panel1.Size = new System.Drawing.Size(716, 77);
             this.panel1.TabIndex = 5;
             // 
-            // label1
+            // labelServerAddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(320, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Test Round";
+            this.labelServerAddress.AutoSize = true;
+            this.labelServerAddress.Location = new System.Drawing.Point(550, 30);
+            this.labelServerAddress.Name = "labelServerAddress";
+            this.labelServerAddress.Size = new System.Drawing.Size(82, 13);
+            this.labelServerAddress.TabIndex = 6;
+            this.labelServerAddress.Text = "Server Address:";
+            // 
+            // textBoxExperimentRound
+            // 
+            this.textBoxExperimentRound.Location = new System.Drawing.Point(420, 40);
+            this.textBoxExperimentRound.Name = "textBoxExperimentRound";
+            this.textBoxExperimentRound.Size = new System.Drawing.Size(78, 20);
+            this.textBoxExperimentRound.TabIndex = 8;
+            // 
+            // textBoxTestRound
+            // 
+            this.textBoxTestRound.Location = new System.Drawing.Point(420, 15);
+            this.textBoxTestRound.Name = "textBoxTestRound";
+            this.textBoxTestRound.Size = new System.Drawing.Size(78, 20);
+            this.textBoxTestRound.TabIndex = 7;
             // 
             // label2
             // 
@@ -97,28 +111,14 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Experiment Round";
             // 
-            // textBoxTestRound
+            // label1
             // 
-            this.textBoxTestRound.Location = new System.Drawing.Point(420, 15);
-            this.textBoxTestRound.Name = "textBoxTestRound";
-            this.textBoxTestRound.Size = new System.Drawing.Size(78, 20);
-            this.textBoxTestRound.TabIndex = 7;
-            // 
-            // textBoxExperimentRound
-            // 
-            this.textBoxExperimentRound.Location = new System.Drawing.Point(420, 40);
-            this.textBoxExperimentRound.Name = "textBoxExperimentRound";
-            this.textBoxExperimentRound.Size = new System.Drawing.Size(78, 20);
-            this.textBoxExperimentRound.TabIndex = 8;
-            // 
-            // labelServerAddress
-            // 
-            this.labelServerAddress.AutoSize = true;
-            this.labelServerAddress.Location = new System.Drawing.Point(550, 30);
-            this.labelServerAddress.Name = "labelServerAddress";
-            this.labelServerAddress.Size = new System.Drawing.Size(82, 13);
-            this.labelServerAddress.TabIndex = 6;
-            this.labelServerAddress.Text = "Server Address:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(320, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Test Round";
             // 
             // label3
             // 
@@ -168,6 +168,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Name = "ServerMainPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ServerMainPage";
             this.Load += new System.EventHandler(this.ServerMainPage_Load);
             this.panel1.ResumeLayout(false);

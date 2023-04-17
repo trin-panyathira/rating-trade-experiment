@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿using System.Windows.Forms;
+
+namespace WindowsFormsApp1
 {
     partial class ClientMainPage
     {
@@ -58,17 +60,25 @@
             this.textBoxHostAddress.Name = "textBoxHostAddress";
             this.textBoxHostAddress.Size = new System.Drawing.Size(100, 20);
             this.textBoxHostAddress.TabIndex = 2;
+            this.textBoxHostAddress.TextChanged += new System.EventHandler(this.textBoxHostAddress_TextChanged);
             // 
             // ClientMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 127);
+            this.ClientSize = new System.Drawing.Size(1235, 607);
+            this.ControlBox = false;
             this.Controls.Add(this.textBoxHostAddress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonConnectServer);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ClientMainPage";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientMainPage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ClientMainPage_Load);
             this.VisibleChanged += new System.EventHandler(this.ClientMainPage_VisibleChanged);
             this.ResumeLayout(false);

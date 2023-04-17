@@ -31,8 +31,8 @@
             this.buttonServer = new System.Windows.Forms.Button();
             this.buttonClient = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxHostAddress = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxHostAddress = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,13 +68,6 @@
             this.panel1.Size = new System.Drawing.Size(358, 120);
             this.panel1.TabIndex = 2;
             // 
-            // textBoxHostAddress
-            // 
-            this.textBoxHostAddress.Location = new System.Drawing.Point(149, 27);
-            this.textBoxHostAddress.Name = "textBoxHostAddress";
-            this.textBoxHostAddress.Size = new System.Drawing.Size(100, 20);
-            this.textBoxHostAddress.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -84,6 +77,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Host Address";
             // 
+            // textBoxHostAddress
+            // 
+            this.textBoxHostAddress.Location = new System.Drawing.Point(149, 27);
+            this.textBoxHostAddress.Name = "textBoxHostAddress";
+            this.textBoxHostAddress.Size = new System.Drawing.Size(100, 20);
+            this.textBoxHostAddress.TabIndex = 2;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +91,7 @@
             this.ClientSize = new System.Drawing.Size(356, 119);
             this.Controls.Add(this.panel1);
             this.Name = "MainPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Server";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.panel1.ResumeLayout(false);

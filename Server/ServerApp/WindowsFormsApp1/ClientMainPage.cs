@@ -20,7 +20,10 @@ namespace WindowsFormsApp1
 
         private void ClientMainPage_Load(object sender, EventArgs e)
         {
-
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Left = Top = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
         private void ClientMainPage_VisibleChanged(object sender, EventArgs e)
@@ -32,6 +35,11 @@ namespace WindowsFormsApp1
 
         private void buttonConnectServer_Click(object sender, EventArgs e)
         {
+        }
+
+        private void textBoxHostAddress_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
