@@ -30,9 +30,6 @@ namespace WindowsFormsApp1
 
         private void buttonStart_VisibleChanged(object sender, EventArgs e)
         {
-            // random quality
-            setQuality();
-
             // set Initiate value
             textBoxTestRound.Text = "5";
             textBoxExperimentRound.Text = "20";
@@ -86,18 +83,6 @@ namespace WindowsFormsApp1
                 qualityList.Add(quality);
             }
             return qualityList;
-        }
-
-        private void setQuality()
-        {
-            Random rnd = new Random();
-            List<int> qualityList = new List<int>();
-            for (int i = 0; i < 100; i++)
-            {
-                int quality = rnd.Next() % 5 + 1;
-                qualityList.Add(quality);
-            }
-            SocketUtil.memoryModel.setQualityList(qualityList);
         }
 
         delegate void AddListBoxActivityCallback(Form f, string text);

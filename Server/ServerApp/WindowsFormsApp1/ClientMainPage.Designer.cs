@@ -30,37 +30,32 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonConnectServer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxHostAddress = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // buttonConnectServer
-            // 
-            this.buttonConnectServer.Location = new System.Drawing.Point(222, 44);
-            this.buttonConnectServer.Name = "buttonConnectServer";
-            this.buttonConnectServer.Size = new System.Drawing.Size(89, 32);
-            this.buttonConnectServer.TabIndex = 0;
-            this.buttonConnectServer.Text = "Connect";
-            this.buttonConnectServer.UseVisualStyleBackColor = true;
-            this.buttonConnectServer.Click += new System.EventHandler(this.buttonConnectServer_Click);
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 54);
+            this.label1.Location = new System.Drawing.Point(562, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Host Address";
+            this.label1.Text = "Welcome message";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBoxHostAddress
+            // label2
             // 
-            this.textBoxHostAddress.Location = new System.Drawing.Point(116, 51);
-            this.textBoxHostAddress.Name = "textBoxHostAddress";
-            this.textBoxHostAddress.Size = new System.Drawing.Size(100, 20);
-            this.textBoxHostAddress.TabIndex = 2;
-            this.textBoxHostAddress.TextChanged += new System.EventHandler(this.textBoxHostAddress_TextChanged);
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(587, 418);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Instructions";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // ClientMainPage
             // 
@@ -68,9 +63,8 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1235, 607);
             this.ControlBox = false;
-            this.Controls.Add(this.textBoxHostAddress);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonConnectServer);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ClientMainPage";
@@ -87,9 +81,7 @@ namespace WindowsFormsApp1
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonConnectServer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxHostAddress;
+        private Label label2;
     }
 }

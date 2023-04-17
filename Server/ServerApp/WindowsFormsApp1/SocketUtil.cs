@@ -142,6 +142,8 @@ namespace WindowsFormsApp1
 
             if (instruction == CONNECT)
             {
+                // for server
+
                 //serverMainPage.addListBoxActivity(clientAddress + " is connected.");
                 serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is connected.");
 
@@ -150,6 +152,8 @@ namespace WindowsFormsApp1
             }
             else if (instruction == DISCONNECT)
             {
+                // for server
+
                 //serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
                 serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is disconnected.");
 
@@ -158,26 +162,30 @@ namespace WindowsFormsApp1
             }
             else if (instruction == SET_QUALITY_LIST)
             {
+                // for user
+
                 string[] values = value.Split(',');
-                int testRound = int.Parse(values[0]);
-                int experimentRound = int.Parse(values[1]);
+                int roundTest = int.Parse(values[0]);
+                int roundExperiment = int.Parse(values[1]);
 
                 // set testQuality
-                List<int> testQuality = new List<int>();
-                for (int i = 2; i < 2 + testRound; i++)
+                List<int> qualityTest = new List<int>();
+                for (int i = 2; i < 2 + roundTest; i++)
                 {
-                    testQuality.Add(int.Parse(values[i]));
+                    qualityTest.Add(int.Parse(values[i]));
                 }
 
                 // set experimentQuality
-                List<int> experimentQuality = new List<int>();
-                for (int i = 2 + testRound; i < values.Length; i++)
+                List<int> qualityExperiment = new List<int>();
+                for (int i = 2 + roundTest; i < values.Length; i++)
                 {
-                    experimentQuality.Add(int.Parse(values[i]));
+                    qualityExperiment.Add(int.Parse(values[i]));
                 }
 
-                Console.WriteLine("test quality: {0}", string.Join(",", testQuality));
-                Console.WriteLine("experiment quality: {0}", string.Join(",", experimentQuality));
+                // save quality to memory
+                memoryModel.qualityTestList = qualityTest;
+                memoryModel.qualityExperimentList = qualityExperiment;
+
                 result = "success";
             }
 

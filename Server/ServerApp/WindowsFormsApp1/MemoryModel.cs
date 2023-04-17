@@ -8,16 +8,17 @@ namespace WindowsFormsApp1
 {
     internal class MemoryModel
     {
-        private List<int> qualityList { get; set; } = new List<int>();
+        public List<int> qualityTestList { get; set; } = new List<int>();
+        public List<int> qualityExperimentList { get; set; } = new List<int>();
 
-        public void setQualityList(List<int> qualityList)
-        {
-            this.qualityList = qualityList;
-        }
+        //public void setQualityList(List<int> qualityList)
+        //{
+        //    this.qualityList = qualityList;
+        //}
 
-        public List<int> getQualityList()
-        {
-            return this.qualityList;
-        }
+        //public List<int> getQualityList()
+        //{
+        //    return this.qualityList;
+        //}
     }
 }
