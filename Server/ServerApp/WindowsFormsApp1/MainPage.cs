@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Runtime.Remoting.Contexts;
+using static WindowsFormsApp1.Constant;
 
 namespace WindowsFormsApp1
 {
@@ -22,7 +24,7 @@ namespace WindowsFormsApp1
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-
+            textBoxHostAddress.Text = "192.168.1.100";
         }
 
         private void buttonServer_Click(object sender, EventArgs e)
@@ -35,10 +37,21 @@ namespace WindowsFormsApp1
 
         private void buttonClient_Click(object sender, EventArgs e)
         {
-            SocketUtil.isServer = false;
-            ClientMainPage page = new ClientMainPage();
-            this.Hide();
-            page.Show();
+            // connect server
+            string hostAddress = textBoxHostAddress.Text.Trim(); // 192.168.1.100
+            bool isSuccess = SocketUtil.SendMessageToHost(hostAddress, CONNECT, SocketUtil.GetLocalIPAddress());
+
+            if (isSuccess)
+            {
+                SocketUtil.isServer = false;
+                ClientMainPage page = new ClientMainPage();
+                this.Hide();
+                page.Show();
+            }
+            else
+            {
+                Console.WriteLine("Connect server failed.");
+            }
         }
     }
 }

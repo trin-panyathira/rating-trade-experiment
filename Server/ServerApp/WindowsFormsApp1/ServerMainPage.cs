@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
             try
             {
                 testRound = int.Parse(textBoxTestRound.Text);
-                experimentRound = int.Parse(textBoxTestRound.Text);
+                experimentRound = int.Parse(textBoxExperimentRound.Text);
             }
             catch (Exception ex) 
             {
@@ -100,14 +100,22 @@ namespace WindowsFormsApp1
             SocketUtil.memoryModel.setQualityList(qualityList);
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
+        delegate void AddListBoxActivityCallback(Form f, string text);
 
-        }
-
-        public void addListBoxActivity(string message)
+        public void addListBoxActivity(Form form, string text)
         {
-            listBoxActivity.Items.Insert(0, message);
+            // InvokeRequired required compares the thread ID of the 
+            // calling thread to the thread ID of the creating thread. 
+            // If these threads are different, it returns true. 
+            if (form.InvokeRequired)
+            {
+                AddListBoxActivityCallback d = new AddListBoxActivityCallback(addListBoxActivity);
+                form.Invoke(d, new object[] { form, text });
+            }
+            else
+            {
+                listBoxActivity.Items.Insert(0, text);
+            }
         }
 
         public void addListBoxUser(string ipv4) 
@@ -116,10 +124,34 @@ namespace WindowsFormsApp1
                 listBoxUser.Items.Add(ipv4);
         }
 
-        public void removeListBoxUser(string ipv4)
+        delegate void AddListBoxUserCallback(Form f, string ipv4);
+        public void addListBoxUser(Form form, string ipv4)
         {
-            if (listBoxUser.Items.IndexOf(ipv4) != -1)
-                listBoxUser.Items.Remove(ipv4);
+            if (form.InvokeRequired)
+            {
+                AddListBoxUserCallback d = new AddListBoxUserCallback(addListBoxUser);
+                form.Invoke(d, new object[] { form, ipv4 });
+            }
+            else
+            {
+                if (listBoxUser.Items.IndexOf(ipv4) == -1)
+                    listBoxUser.Items.Add(ipv4);
+            }
+        }
+
+        delegate void RemoveListBoxUserCallback(Form f, string ipv4);
+        public void removeListBoxUser(Form form, string ipv4)
+        {
+            if (form.InvokeRequired)
+            {
+                RemoveListBoxUserCallback d = new RemoveListBoxUserCallback(removeListBoxUser);
+                form.Invoke(d, new object[] { form, ipv4 });
+            }
+            else
+            {
+                if (listBoxUser.Items.IndexOf(ipv4) != -1)
+                    listBoxUser.Items.Remove(ipv4);
+            }
         }
     }
 }

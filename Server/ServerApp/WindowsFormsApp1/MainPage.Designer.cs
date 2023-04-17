@@ -31,14 +31,16 @@
             this.buttonServer = new System.Windows.Forms.Button();
             this.buttonClient = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxHostAddress = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonServer
             // 
-            this.buttonServer.Location = new System.Drawing.Point(53, 99);
+            this.buttonServer.Location = new System.Drawing.Point(13, 76);
             this.buttonServer.Name = "buttonServer";
-            this.buttonServer.Size = new System.Drawing.Size(281, 144);
+            this.buttonServer.Size = new System.Drawing.Size(141, 33);
             this.buttonServer.TabIndex = 0;
             this.buttonServer.Text = "Server";
             this.buttonServer.UseVisualStyleBackColor = true;
@@ -46,9 +48,9 @@
             // 
             // buttonClient
             // 
-            this.buttonClient.Location = new System.Drawing.Point(406, 99);
+            this.buttonClient.Location = new System.Drawing.Point(204, 76);
             this.buttonClient.Name = "buttonClient";
-            this.buttonClient.Size = new System.Drawing.Size(281, 144);
+            this.buttonClient.Size = new System.Drawing.Size(141, 33);
             this.buttonClient.TabIndex = 1;
             this.buttonClient.Text = "Client";
             this.buttonClient.UseVisualStyleBackColor = true;
@@ -56,24 +58,43 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.panel1.BackColor = System.Drawing.Color.LightCyan;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBoxHostAddress);
             this.panel1.Controls.Add(this.buttonServer);
             this.panel1.Controls.Add(this.buttonClient);
-            this.panel1.Location = new System.Drawing.Point(-1, -2);
+            this.panel1.Location = new System.Drawing.Point(-1, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(734, 366);
+            this.panel1.Size = new System.Drawing.Size(358, 120);
             this.panel1.TabIndex = 2;
+            // 
+            // textBoxHostAddress
+            // 
+            this.textBoxHostAddress.Location = new System.Drawing.Point(149, 27);
+            this.textBoxHostAddress.Name = "textBoxHostAddress";
+            this.textBoxHostAddress.Size = new System.Drawing.Size(100, 20);
+            this.textBoxHostAddress.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(73, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Host Address";
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 360);
+            this.ClientSize = new System.Drawing.Size(356, 119);
             this.Controls.Add(this.panel1);
             this.Name = "MainPage";
             this.Text = "Server";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -83,6 +104,8 @@
         private System.Windows.Forms.Button buttonServer;
         private System.Windows.Forms.Button buttonClient;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBoxHostAddress;
+        private System.Windows.Forms.Label label1;
     }
 }
 

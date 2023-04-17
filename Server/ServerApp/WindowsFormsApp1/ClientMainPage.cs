@@ -25,8 +25,6 @@ namespace WindowsFormsApp1
 
         private void ClientMainPage_VisibleChanged(object sender, EventArgs e)
         {
-            textBoxHostAddress.Text = "192.168.1.100";
-
             // start sever
             SocketUtil.isServer = false;
             SocketUtil.StartThreadServer(this);
@@ -34,10 +32,6 @@ namespace WindowsFormsApp1
 
         private void buttonConnectServer_Click(object sender, EventArgs e)
         {
-            string hostAddress = textBoxHostAddress.Text.Trim(); // 192.168.1.100
-
-            SocketUtil.SendMessageToHost(hostAddress, CONNECT, SocketUtil.GetLocalIPAddress());
-            //SocketUtil.SendMessageToHost(hostAddress, SET_QUALITY_LIST, "");
         }
     }
 }

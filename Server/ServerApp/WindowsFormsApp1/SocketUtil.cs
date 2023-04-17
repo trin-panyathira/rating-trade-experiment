@@ -9,6 +9,8 @@ using System.Threading;
 using System.Collections;
 using static WindowsFormsApp1.Constant;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WindowsFormsApp1
 {
@@ -25,6 +27,9 @@ namespace WindowsFormsApp1
         private static ClientMainPage clientMainPage = null;
         public static bool isServer = false;
 
+        // ==========================================================================================================================
+        // Server
+        // ==========================================================================================================================
         #region Server
         public static void StartThreadServer(ServerMainPage page)
         {
@@ -112,7 +117,6 @@ namespace WindowsFormsApp1
                     byte[] message = Encoding.ASCII.GetBytes(responseMsg);
 
                     // Send a message to Client
-                    // using Send() method
                     clientSocket.Send(message);
 
                     // Close client Socket using the
@@ -121,6 +125,7 @@ namespace WindowsFormsApp1
                     // for a new Client Connection
                     clientSocket.Shutdown(SocketShutdown.Both);
                     clientSocket.Close();
+
                     Console.WriteLine("Sent Message Success.");
                 }
             }
@@ -137,16 +142,18 @@ namespace WindowsFormsApp1
 
             if (instruction == CONNECT)
             {
-                serverMainPage.addListBoxActivity(clientAddress + " is connected.");
+                //serverMainPage.addListBoxActivity(clientAddress + " is connected.");
+                serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is connected.");
 
-                serverMainPage.addListBoxUser(clientAddress);
+                serverMainPage.addListBoxUser(serverMainPage, clientAddress);
                 result = "connect success.";
             }
             else if (instruction == DISCONNECT)
             {
-                serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
+                //serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
+                serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is disconnected.");
 
-                serverMainPage.removeListBoxUser(clientAddress);
+                serverMainPage.removeListBoxUser(serverMainPage, clientAddress);
                 result = "disconnect success.";
             }
             else if (instruction == SET_QUALITY_LIST)
@@ -178,9 +185,13 @@ namespace WindowsFormsApp1
         }
         #endregion
 
+        // ==========================================================================================================================
+        // Client
+        // ==========================================================================================================================
         #region Client
-        public static void SendMessageToHost(string hostIPv4, string instruction, string value)
+        public static bool SendMessageToHost(string hostIPv4, string instruction, string value)
         {
+            bool result = false;
             string message = GetLocalIPAddress() + ":" + instruction.Trim() + ":" + value.Trim() + ";";
 
             try
@@ -228,6 +239,8 @@ namespace WindowsFormsApp1
                     //// the method Close()
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
+
+                    result = true;
                 }
                 // Manage of Socket's Exceptions
                 catch (ArgumentNullException ane)
@@ -250,8 +263,14 @@ namespace WindowsFormsApp1
 
                 Console.WriteLine(e.ToString());
             }
+
+            return result;
         }
         #endregion
+
+        // ==========================================================================================================================
+        // Other
+        // ==========================================================================================================================
 
         public static string GetLocalIPAddress()
         {
