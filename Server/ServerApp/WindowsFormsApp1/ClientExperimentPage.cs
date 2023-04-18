@@ -31,20 +31,6 @@ namespace WindowsFormsApp1
             SocketUtil.memoryModel.clientExperimentPage = this;
         }
 
-        private void buttonConnectServer_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void textBoxHostAddress_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         delegate void ActivityCallback(Form f, string text);
 
         //public void startExpirement(Form form, string text)

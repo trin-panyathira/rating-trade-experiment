@@ -12,9 +12,11 @@ namespace WindowsFormsApp1
 
         public ClientMainPage clientMainPage = null;
         public ClientExperimentPage clientExperimentPage = null;
+        public ClientFinalPage clientFinalPage = null;
 
         public List<int> qualityTestList { get; set; } = new List<int>();
         public List<int> qualityExperimentList { get; set; } = new List<int>();
         public int rebase { get; set; }
+        public bool isTest { get; set; } = false;
     }
 }

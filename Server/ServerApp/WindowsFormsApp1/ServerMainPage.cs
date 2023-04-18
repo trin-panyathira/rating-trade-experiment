@@ -35,9 +35,10 @@ namespace WindowsFormsApp1
 
         private void buttonStart_VisibleChanged(object sender, EventArgs e)
         {
+            SocketUtil.memoryModel.serverMainPage = this;
+
             // start sever
             SocketUtil.isServer = true;
-            SocketUtil.memoryModel.serverMainPage = this;
             SocketUtil.StartThreadServer();
         }
 
