@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxActivity = new System.Windows.Forms.ListBox();
             this.listBoxUser = new System.Windows.Forms.ListBox();
+            this.comboBoxRebase = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.comboBoxRebase);
             this.panel1.Controls.Add(this.labelServerAddress);
             this.panel1.Controls.Add(this.textBoxExperimentRound);
             this.panel1.Controls.Add(this.textBoxTestRound);
@@ -90,14 +92,14 @@
             // 
             // textBoxExperimentRound
             // 
-            this.textBoxExperimentRound.Location = new System.Drawing.Point(420, 40);
+            this.textBoxExperimentRound.Location = new System.Drawing.Point(420, 29);
             this.textBoxExperimentRound.Name = "textBoxExperimentRound";
             this.textBoxExperimentRound.Size = new System.Drawing.Size(78, 20);
             this.textBoxExperimentRound.TabIndex = 8;
             // 
             // textBoxTestRound
             // 
-            this.textBoxTestRound.Location = new System.Drawing.Point(420, 15);
+            this.textBoxTestRound.Location = new System.Drawing.Point(420, 6);
             this.textBoxTestRound.Name = "textBoxTestRound";
             this.textBoxTestRound.Size = new System.Drawing.Size(78, 20);
             this.textBoxTestRound.TabIndex = 7;
@@ -105,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(320, 43);
+            this.label2.Location = new System.Drawing.Point(320, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 6;
@@ -114,7 +116,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(320, 18);
+            this.label1.Location = new System.Drawing.Point(320, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 5;
@@ -156,6 +158,17 @@
             this.listBoxUser.Size = new System.Drawing.Size(219, 576);
             this.listBoxUser.TabIndex = 9;
             // 
+            // comboBoxRebase
+            // 
+            this.comboBoxRebase.FormattingEnabled = true;
+            this.comboBoxRebase.Items.AddRange(new object[] {
+            "Without Rebase",
+            "Rebase"});
+            this.comboBoxRebase.Location = new System.Drawing.Point(323, 53);
+            this.comboBoxRebase.Name = "comboBoxRebase";
+            this.comboBoxRebase.Size = new System.Drawing.Size(175, 21);
+            this.comboBoxRebase.TabIndex = 9;
+            // 
             // ServerMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,5 +205,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxActivity;
         private System.Windows.Forms.ListBox listBoxUser;
+        private System.Windows.Forms.ComboBox comboBoxRebase;
     }
 }

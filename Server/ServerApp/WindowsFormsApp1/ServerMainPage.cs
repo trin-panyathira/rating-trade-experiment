@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +21,11 @@ namespace WindowsFormsApp1
 
         private void ServerMainPage_Load(object sender, EventArgs e)
         {
-
+            // set Initiate value
+            textBoxTestRound.Text = "5";
+            textBoxExperimentRound.Text = "20";
+            comboBoxRebase.SelectedIndex = 0;
+            labelServerAddress.Text = "Server Address: " + SocketUtil.GetLocalIPAddress();
         }
 
         private void ServerMainPage_Shown(object sender, EventArgs e)
@@ -30,11 +35,6 @@ namespace WindowsFormsApp1
 
         private void buttonStart_VisibleChanged(object sender, EventArgs e)
         {
-            // set Initiate value
-            textBoxTestRound.Text = "5";
-            textBoxExperimentRound.Text = "20";
-            labelServerAddress.Text = "Server Address: " + SocketUtil.GetLocalIPAddress();
-
             // start sever
             SocketUtil.isServer = true;
             SocketUtil.StartThreadServer(this);
@@ -60,6 +60,8 @@ namespace WindowsFormsApp1
             for (int i = 0; i < listBoxUser.Items.Count; i++)
             {
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_QUALITY_LIST, randomQualityMessage);
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_REBASE, comboBoxRebase.SelectedIndex.ToString());
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
             }
         }
 
@@ -85,7 +87,7 @@ namespace WindowsFormsApp1
             return qualityList;
         }
 
-        delegate void AddListBoxActivityCallback(Form f, string text);
+        delegate void ActivityCallback(Form f, string text);
 
         public void addListBoxActivity(Form form, string text)
         {
@@ -94,7 +96,7 @@ namespace WindowsFormsApp1
             // If these threads are different, it returns true. 
             if (form.InvokeRequired)
             {
-                AddListBoxActivityCallback d = new AddListBoxActivityCallback(addListBoxActivity);
+                ActivityCallback d = new ActivityCallback(addListBoxActivity);
                 form.Invoke(d, new object[] { form, text });
             }
             else
@@ -103,18 +105,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void addListBoxUser(string ipv4) 
-        { 
-            if(listBoxUser.Items.IndexOf(ipv4) == -1)
-                listBoxUser.Items.Add(ipv4);
-        }
-
-        delegate void AddListBoxUserCallback(Form f, string ipv4);
         public void addListBoxUser(Form form, string ipv4)
         {
             if (form.InvokeRequired)
             {
-                AddListBoxUserCallback d = new AddListBoxUserCallback(addListBoxUser);
+                ActivityCallback d = new ActivityCallback(addListBoxUser);
                 form.Invoke(d, new object[] { form, ipv4 });
             }
             else
@@ -124,12 +119,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        delegate void RemoveListBoxUserCallback(Form f, string ipv4);
         public void removeListBoxUser(Form form, string ipv4)
         {
             if (form.InvokeRequired)
             {
-                RemoveListBoxUserCallback d = new RemoveListBoxUserCallback(removeListBoxUser);
+                ActivityCallback d = new ActivityCallback(removeListBoxUser);
                 form.Invoke(d, new object[] { form, ipv4 });
             }
             else

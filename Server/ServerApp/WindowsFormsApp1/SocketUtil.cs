@@ -160,10 +160,16 @@ namespace WindowsFormsApp1
                 serverMainPage.removeListBoxUser(serverMainPage, clientAddress);
                 result = "disconnect success.";
             }
+            else if (instruction == SET_START)
+            {
+                // for user
+                Console.WriteLine("Start!!");
+
+                result = "success";
+            }
             else if (instruction == SET_QUALITY_LIST)
             {
                 // for user
-
                 string[] values = value.Split(',');
                 int roundTest = int.Parse(values[0]);
                 int roundExperiment = int.Parse(values[1]);
@@ -185,6 +191,13 @@ namespace WindowsFormsApp1
                 // save quality to memory
                 memoryModel.qualityTestList = qualityTest;
                 memoryModel.qualityExperimentList = qualityExperiment;
+
+                result = "success";
+            }
+            else if (instruction == SET_REBASE)
+            {
+                // for user
+                Console.WriteLine("Rebase: {0}", value);
 
                 result = "success";
             }
