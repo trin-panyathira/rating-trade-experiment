@@ -37,7 +37,8 @@ namespace WindowsFormsApp1
         {
             // start sever
             SocketUtil.isServer = true;
-            SocketUtil.StartThreadServer(this);
+            SocketUtil.memoryModel.serverMainPage = this;
+            SocketUtil.StartThreadServer();
         }
 
         private void buttonStart_Click(object sender, EventArgs e)

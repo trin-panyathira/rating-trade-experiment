@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientExperimentPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientExperimentPage.Designer.cs">
+      <DependentUpon>ClientExperimentPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientFinalPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientFinalPage.Designer.cs">
+      <DependentUpon>ClientFinalPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +86,12 @@
     </Compile>
     <Compile Include="ExcelUtil.cs" />
     <Compile Include="SocketUtil.cs" />
+    <EmbeddedResource Include="ClientExperimentPage.resx">
+      <DependentUpon>ClientExperimentPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientFinalPage.resx">
+      <DependentUpon>ClientFinalPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClientMainPage.resx">
       <DependentUpon>ClientMainPage.cs</DependentUpon>
     </EmbeddedResource>

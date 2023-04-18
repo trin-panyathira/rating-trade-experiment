@@ -30,7 +30,8 @@ namespace WindowsFormsApp1
         {
             // start sever
             SocketUtil.isServer = false;
-            SocketUtil.StartThreadServer(this);
+            SocketUtil.memoryModel.clientMainPage = this;
+            SocketUtil.StartThreadServer();
         }
 
         private void buttonConnectServer_Click(object sender, EventArgs e)
@@ -45,6 +46,24 @@ namespace WindowsFormsApp1
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        delegate void ActivityCallback(Form f, string text);
+
+        public void startExpirement(Form form, string text)
+        {
+            if (this.InvokeRequired)
+            {
+                ActivityCallback d = new ActivityCallback(startExpirement);
+                form.Invoke(d, new object[] { form, text });
+            }
+            else
+            {
+                ClientExperimentPage page = new ClientExperimentPage();
+                SocketUtil.memoryModel.clientExperimentPage = page;
+                page.Show();
+                this.Hide();
+            }
         }
     }
 }

@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Collections;
-using static WindowsFormsApp1.Constant;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static WindowsFormsApp1.Constant;
 
 namespace WindowsFormsApp1
 {
@@ -19,30 +19,27 @@ namespace WindowsFormsApp1
         private static int port_server = 10001;
         private static int port_client = 10002;
         private static IPAddress ipAddr;
+        private static bool isStartServer = false;
         private static Socket sender;
 
         public static MemoryModel memoryModel = new MemoryModel();
 
-        private static ServerMainPage serverMainPage = null;
-        private static ClientMainPage clientMainPage = null;
+        //private static ServerMainPage serverMainPage = null;
+        //private static ClientMainPage clientMainPage = null;
         public static bool isServer = false;
 
         // ==========================================================================================================================
         // Server
         // ==========================================================================================================================
         #region Server
-        public static void StartThreadServer(ServerMainPage page)
+        public static void StartThreadServer()
         {
-            serverMainPage = page;
-            Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
-            serverThread.Start();
-        }
-
-        public static void StartThreadServer(ClientMainPage page)
-        {
-            clientMainPage = page;
-            Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
-            serverThread.Start();
+            if (!isStartServer)
+            {
+                isStartServer = true;
+                Thread serverThread = new Thread(new ThreadStart(SocketUtil.ExecuteServer));
+                serverThread.Start();
+            }
         }
 
         public static void ExecuteServer()
@@ -145,9 +142,9 @@ namespace WindowsFormsApp1
                 // for server
 
                 //serverMainPage.addListBoxActivity(clientAddress + " is connected.");
-                serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is connected.");
+                memoryModel.serverMainPage.addListBoxActivity(memoryModel.serverMainPage, clientAddress + " is connected.");
 
-                serverMainPage.addListBoxUser(serverMainPage, clientAddress);
+                memoryModel.serverMainPage.addListBoxUser(memoryModel.serverMainPage, clientAddress);
                 result = "connect success.";
             }
             else if (instruction == DISCONNECT)
@@ -155,15 +152,16 @@ namespace WindowsFormsApp1
                 // for server
 
                 //serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
-                serverMainPage.addListBoxActivity(serverMainPage, clientAddress + " is disconnected.");
+                memoryModel.serverMainPage.addListBoxActivity(memoryModel.serverMainPage, clientAddress + " is disconnected.");
 
-                serverMainPage.removeListBoxUser(serverMainPage, clientAddress);
+                memoryModel.serverMainPage.removeListBoxUser(memoryModel.serverMainPage, clientAddress);
                 result = "disconnect success.";
             }
             else if (instruction == SET_START)
             {
                 // for user
                 Console.WriteLine("Start!!");
+                memoryModel.clientMainPage.startExpirement(memoryModel.clientMainPage, value);
 
                 result = "success";
             }
@@ -198,6 +196,7 @@ namespace WindowsFormsApp1
             {
                 // for user
                 Console.WriteLine("Rebase: {0}", value);
+                memoryModel.rebase = int.Parse(value);
 
                 result = "success";
             }
