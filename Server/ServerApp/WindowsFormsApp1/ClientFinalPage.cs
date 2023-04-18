@@ -28,7 +28,10 @@ namespace WindowsFormsApp1
 
         private void ClientFinalPage_VisibleChanged(object sender, EventArgs e)
         {
-            SocketUtil.memoryModel.clientFinalPage = this;
+            if (this.Visible == true)
+            {
+                SocketUtil.memoryModel.clientFinalPage = this;
+            }
         }
 
         delegate void ActivityCallback(Form f, string text);

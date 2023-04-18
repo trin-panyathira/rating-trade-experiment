@@ -35,11 +35,14 @@ namespace WindowsFormsApp1
 
         private void buttonStart_VisibleChanged(object sender, EventArgs e)
         {
-            SocketUtil.memoryModel.serverMainPage = this;
+            if (this.Visible == true)
+            {
+                SocketUtil.memoryModel.serverMainPage = this;
 
-            // start sever
-            SocketUtil.isServer = true;
-            SocketUtil.StartThreadServer();
+                // start sever
+                SocketUtil.isServer = true;
+                SocketUtil.StartThreadServer();
+            }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)

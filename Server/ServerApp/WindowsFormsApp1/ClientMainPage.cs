@@ -28,10 +28,14 @@ namespace WindowsFormsApp1
 
         private void ClientMainPage_VisibleChanged(object sender, EventArgs e)
         {
-            // start sever
-            SocketUtil.isServer = false;
-            SocketUtil.memoryModel.clientMainPage = this;
-            SocketUtil.StartThreadServer();
+            if (this.Visible == true)
+            {
+                SocketUtil.memoryModel.clientMainPage = this;
+
+                // start sever
+                SocketUtil.isServer = false;
+                SocketUtil.StartThreadServer();
+            }
         }
 
         delegate void ActivityCallback(Form f, string text);

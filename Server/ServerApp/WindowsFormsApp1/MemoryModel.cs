@@ -12,7 +12,10 @@ namespace WindowsFormsApp1
 
         public ClientMainPage clientMainPage = null;
         public ClientExperimentPage clientExperimentPage = null;
+        public ClientWaitingPage clientWaitingPage = null;
         public ClientFinalPage clientFinalPage = null;
+
+        public List<BuyingModel> buyingModelList = null;
 
         public List<int> qualityTestList { get; set; } = new List<int>();
         public List<int> qualityExperimentList { get; set; } = new List<int>();
