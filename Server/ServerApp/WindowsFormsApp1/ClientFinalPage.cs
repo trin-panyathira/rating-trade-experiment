@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
                 try
                 {
                     decimal actualPaymentAmount = CalculateActualPayment();
-                    labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount + " THB";
+                    labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount.ToString("F") + " THB";
                 }
                 catch (Exception ex)
                 {

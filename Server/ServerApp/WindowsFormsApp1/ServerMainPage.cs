@@ -68,11 +68,18 @@ namespace WindowsFormsApp1
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_REBASE, comboBoxRebase.SelectedIndex.ToString());
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
             }
+
+            buttonStart.Enabled = false;
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < listBoxUser.Items.Count; i++)
+            {
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_STOP, "");
+            }
 
+            buttonStart.Enabled = true;
         }
 
         private void ServerMainPage_FormClosing(object sender, FormClosingEventArgs e)

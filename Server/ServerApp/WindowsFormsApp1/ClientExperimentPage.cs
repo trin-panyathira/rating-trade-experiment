@@ -88,12 +88,16 @@ namespace WindowsFormsApp1
                 // Finish Experiment
                 if (SocketUtil.memoryModel.isTest)
                 {
+                    timer1.Stop();
+
                     ClientWaitingPage page = new ClientWaitingPage();
                     page.Show();
                     this.Hide();
                 }
                 else
                 {
+                    timer1.Stop();
+
                     ClientFinalPage page = new ClientFinalPage();
                     page.Show();
                     this.Hide();
@@ -136,7 +140,11 @@ namespace WindowsFormsApp1
                     sumFeedback = sumFeedback + beforeFeedback;
                     countFeedback = countFeedback + 1;
                 }
-                curRating = sumFeedback / countFeedback;
+
+                if(countFeedback > 0)
+                    curRating = sumFeedback / countFeedback;
+                else 
+                    curRating = -1;
             }
 
             buyingModel = new BuyingModel();
@@ -251,6 +259,7 @@ namespace WindowsFormsApp1
             if (curState == stateBuy)
             {
                 buyingModel.buy = 0;
+                nextState = statePayOff;
             }
             else if (curState == stateClaim)
             {

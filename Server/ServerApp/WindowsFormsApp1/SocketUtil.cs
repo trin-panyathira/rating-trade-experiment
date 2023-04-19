@@ -143,8 +143,6 @@ namespace WindowsFormsApp1
             if (instruction == CONNECT)
             {
                 // for server
-
-                //serverMainPage.addListBoxActivity(clientAddress + " is connected.");
                 memoryModel.serverMainPage.addListBoxActivity(memoryModel.serverMainPage, clientAddress + " is connected.");
 
                 memoryModel.serverMainPage.addListBoxUser(memoryModel.serverMainPage, clientAddress);
@@ -153,8 +151,6 @@ namespace WindowsFormsApp1
             else if (instruction == DISCONNECT)
             {
                 // for server
-
-                //serverMainPage.addListBoxActivity(clientAddress + " is disconnected.");
                 memoryModel.serverMainPage.addListBoxActivity(memoryModel.serverMainPage, clientAddress + " is disconnected.");
 
                 memoryModel.serverMainPage.removeListBoxUser(memoryModel.serverMainPage, clientAddress);
@@ -164,6 +160,14 @@ namespace WindowsFormsApp1
             {
                 // for user
                 Console.WriteLine("Start!!");
+                memoryModel.clientMainPage.startExpirement(memoryModel.clientMainPage, value);
+
+                result = "success";
+            }
+            else if (instruction == SET_STOP)
+            {
+                // for user
+                Console.WriteLine("Stop!!");
                 memoryModel.clientMainPage.startExpirement(memoryModel.clientMainPage, value);
 
                 result = "success";
@@ -205,8 +209,9 @@ namespace WindowsFormsApp1
             }
             else if (instruction == SEND_RESULT)
             {
-                // for user
+                // for server
                 Console.WriteLine("Result : {0}", value);
+                memoryModel.serverMainPage.addListBoxActivity(memoryModel.serverMainPage, clientAddress + " has already sent result.");
                 List<string> messageList = value.Split('|').ToList();
                 List<BuyingModel> resultList = messageList.Select(message => 
                 {
@@ -226,8 +231,9 @@ namespace WindowsFormsApp1
                     };
                 }).ToList();
 
-                ExcelUtil excelUtil = new ExcelUtil();
-                excelUtil.exportExcel(resultList, clientAddress);
+                // Save excel by thread
+                Thread serverThread = new Thread(() => ExcelUtil.ExportExcel(resultList, clientAddress));
+                serverThread.Start();
 
                 result = "success";
             }
@@ -276,7 +282,7 @@ namespace WindowsFormsApp1
                     int byteSent = sender.Send(messageSent);
 
                     // Data buffer
-                    byte[] messageReceived = new byte[1024];
+                    byte[] messageReceived = new byte[10240];
 
                     // We receive the message using
                     // the method Receive(). This

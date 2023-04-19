@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
 {
     internal class ExcelUtil
     {
-        public void exportExcel(List<BuyingModel> resultList, string address)
+        public static void ExportExcel(List<BuyingModel> resultList, string address)
         {
             Microsoft.Office.Interop.Excel.Application oXL;
             Microsoft.Office.Interop.Excel._Workbook oWB;
@@ -68,18 +68,6 @@ namespace WindowsFormsApp1
                     rowIndex++;
                 });
 
-                ////Fill A2:B6 with an array of values (First and Last Names).
-                //oSheet.get_Range("A2", "B6").Value2 = saNames;
-
-                ////Fill C2:C6 with a relative formula (=A2 & " " & B2).
-                //oRng = oSheet.get_Range("C2", "C6");
-                //oRng.Formula = "=A2 & \" \" & B2";
-
-                ////Fill D2:D6 with a formula(=RAND()*100000) and apply format.
-                //oRng = oSheet.get_Range("D2", "D6");
-                //oRng.Formula = "=RAND()*100000";
-                //oRng.NumberFormat = "$0.00";
-
                 //AutoFit columns A:D.
                 oRng = oSheet.get_Range("A1", "I1");
                 oRng.EntireColumn.AutoFit();
@@ -105,7 +93,7 @@ namespace WindowsFormsApp1
         }
 
         #region
-        //public void exportExcel()
+        //public void ExportExcel()
         //{
         //    Microsoft.Office.Interop.Excel.Application oXL;
         //    Microsoft.Office.Interop.Excel._Workbook oWB;
