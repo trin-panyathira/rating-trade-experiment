@@ -216,7 +216,7 @@ namespace WindowsFormsApp1
                     {
                         round = int.Parse(items[0]),
                         quality = int.Parse(items[1]),
-                        rating = int.Parse(items[2]),
+                        rating = decimal.Parse(items[2]),
                         buy = int.Parse(items[3]),
                         claim = int.Parse(items[4]),
                         feedback = int.Parse(items[5]),

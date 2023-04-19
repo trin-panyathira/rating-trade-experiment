@@ -46,8 +46,8 @@ namespace WindowsFormsApp1
                 oSheet.Cells[rowIndex, 9] = "Epp";
 
                 //Format A1:D1 as bold, vertical alignment = center.
-                oSheet.get_Range("A1", "D1").Font.Bold = true;
-                oSheet.get_Range("A1", "D1").VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                oSheet.get_Range("A1", "I1").Font.Bold = true;
+                oSheet.get_Range("A1", "I1").VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
 
                 // Create an array to multiple values at once.
                 string[,] saNames = new string[resultList.Count, 9];

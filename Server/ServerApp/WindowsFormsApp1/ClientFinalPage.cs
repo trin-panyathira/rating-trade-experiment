@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
             {
                 return model.round + "," +
                     model.quality + "," +
-                    model.rating + "," +
+                    model.rating.ToString("F") + "," +
                     model.buy + "," +
                     model.claim + "," +
                     model.feedback + "," +
