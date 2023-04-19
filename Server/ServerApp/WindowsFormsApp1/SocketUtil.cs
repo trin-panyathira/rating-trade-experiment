@@ -168,7 +168,6 @@ namespace WindowsFormsApp1
             {
                 // for user
                 Console.WriteLine("Stop!!");
-                memoryModel.clientMainPage.startExpirement(memoryModel.clientMainPage, value);
 
                 result = "success";
             }
