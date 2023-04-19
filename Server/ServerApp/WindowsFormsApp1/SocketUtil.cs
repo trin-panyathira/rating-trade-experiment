@@ -11,6 +11,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using static WindowsFormsApp1.Constant;
+using Microsoft.Office.Interop.Excel;
+using System.Security.Claims;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -200,6 +203,34 @@ namespace WindowsFormsApp1
 
                 result = "success";
             }
+            else if (instruction == SEND_RESULT)
+            {
+                // for user
+                Console.WriteLine("Result : {0}", value);
+                List<string> messageList = value.Split('|').ToList();
+                List<BuyingModel> resultList = messageList.Select(message => 
+                {
+                    string[] items = message.Split(',');
+
+                    return new BuyingModel
+                    {
+                        round = int.Parse(items[0]),
+                        quality = int.Parse(items[1]),
+                        rating = int.Parse(items[2]),
+                        buy = int.Parse(items[3]),
+                        claim = int.Parse(items[4]),
+                        feedback = int.Parse(items[5]),
+                        payoff = int.Parse(items[6]),
+                        rebase = int.Parse(items[7]),
+                        epp = int.Parse(items[8])
+                    };
+                }).ToList();
+
+                ExcelUtil excelUtil = new ExcelUtil();
+                excelUtil.exportExcel(resultList, clientAddress);
+
+                result = "success";
+            }
 
             return result;
         }
@@ -245,7 +276,7 @@ namespace WindowsFormsApp1
                     int byteSent = sender.Send(messageSent);
 
                     // Data buffer
-                    byte[] messageReceived = new byte[102400];
+                    byte[] messageReceived = new byte[1024];
 
                     // We receive the message using
                     // the method Receive(). This

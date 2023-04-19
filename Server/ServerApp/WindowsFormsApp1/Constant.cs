@@ -13,5 +13,6 @@ namespace WindowsFormsApp1
         public static string SET_START { get; set; } = "SET_START";
         public static string SET_QUALITY_LIST { get; set; } = "SET_QUALITY_LIST";
         public static string SET_REBASE { get; set; } = "SET_REBASE";
+        public static string SEND_RESULT { get; set; } = "SEND_RESULT";
     }
 }

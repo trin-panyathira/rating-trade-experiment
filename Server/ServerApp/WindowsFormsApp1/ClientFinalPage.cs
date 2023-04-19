@@ -31,17 +31,28 @@ namespace WindowsFormsApp1
             if (this.Visible == true)
             {
                 SocketUtil.memoryModel.clientFinalPage = this;
-            }
 
-            decimal actualPaymentAmount = CalculateActualPayment();
-            labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount + " THB";
+                // Set Actual Payment
+                try
+                {
+                    decimal actualPaymentAmount = CalculateActualPayment();
+                    labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount + " THB";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error Set Actual Payment : {0}", ex.ToString());
+                }
+
+                // Send Result to Host
+                SendResultToHost(SocketUtil.memoryModel.buyingModelList);
+            }
         }
 
-        private decimal CalculateActualPayment() 
+        private decimal CalculateActualPayment()
         {
             // Create index list for random without duplicate
             List<int> indexList = new List<int>();
-            for (int i=0;i<SocketUtil.memoryModel.qualityExperimentList.Count;i++)
+            for (int i = 0; i < SocketUtil.memoryModel.qualityExperimentList.Count; i++)
             {
                 indexList.Add(i);
             }
@@ -67,6 +78,25 @@ namespace WindowsFormsApp1
 
             // Avg random payoff
             return sumRandomPayoff / randomRoundQty;
+        }
+
+        private void SendResultToHost(List<BuyingModel> modelList)
+        {
+            List<string> resultList = modelList.Select(model =>
+            {
+                return model.round + "," +
+                    model.quality + "," +
+                    model.rating + "," +
+                    model.buy + "," +
+                    model.claim + "," +
+                    model.feedback + "," +
+                    model.payoff + "," +
+                    model.rebase + "," +
+                    model.epp;
+            }).ToList();
+
+            string resultMessage = String.Join("|", resultList);
+            SocketUtil.SendMessageToHost(SocketUtil.GetLocalIPAddress(), SEND_RESULT, resultMessage);
         }
     }
 }
