@@ -32,20 +32,41 @@ namespace WindowsFormsApp1
             {
                 SocketUtil.memoryModel.clientFinalPage = this;
             }
+
+            decimal actualPaymentAmount = CalculateActualPayment();
+            labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount + " THB";
         }
 
-        delegate void ActivityCallback(Form f, string text);
+        private decimal CalculateActualPayment() 
+        {
+            // Create index list for random without duplicate
+            List<int> indexList = new List<int>();
+            for (int i=0;i<SocketUtil.memoryModel.qualityExperimentList.Count;i++)
+            {
+                indexList.Add(i);
+            }
 
-        //public void startExpirement(Form form, string text)
-        //{
-        //    if (form.InvokeRequired)
-        //    {
-        //        ActivityCallback d = new ActivityCallback(startExpirement);
-        //        form.Invoke(d, new object[] { form, text });
-        //    }
-        //    else
-        //    {
-        //    }
-        //}
+            int randomRoundQty = 3;
+            List<int> randomPayoffIndex = new List<int>();
+            for (int i = 0; i < randomRoundQty; i++)
+            {
+                Random rnd = new Random();
+                int randomIndex = rnd.Next() % indexList.Count();
+                int index = indexList.ElementAt(randomIndex);
+
+                randomPayoffIndex.Add(index);
+                indexList.Remove(index);
+            }
+
+            // Sum random payoff
+            decimal sumRandomPayoff = 0;
+            randomPayoffIndex.ForEach(index =>
+            {
+                sumRandomPayoff = sumRandomPayoff + SocketUtil.memoryModel.buyingModelList.ElementAt(index).payoff;
+            });
+
+            // Avg random payoff
+            return sumRandomPayoff / randomRoundQty;
+        }
     }
 }

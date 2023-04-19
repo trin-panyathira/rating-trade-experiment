@@ -30,20 +30,20 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelActualPayment = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelActualPayment
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(559, 113);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Actual Payment";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelActualPayment.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelActualPayment.AutoSize = true;
+            this.labelActualPayment.Location = new System.Drawing.Point(559, 113);
+            this.labelActualPayment.Name = "labelActualPayment";
+            this.labelActualPayment.Size = new System.Drawing.Size(91, 13);
+            this.labelActualPayment.TabIndex = 1;
+            this.labelActualPayment.Text = "Actual Payment is";
+            this.labelActualPayment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -63,7 +63,7 @@ namespace WindowsFormsApp1
             this.ClientSize = new System.Drawing.Size(1235, 607);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelActualPayment);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ClientFinalPage";
@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelActualPayment;
         private Label label2;
     }
 }
