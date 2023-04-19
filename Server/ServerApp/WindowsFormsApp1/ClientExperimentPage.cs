@@ -151,8 +151,7 @@ namespace WindowsFormsApp1
             buyingModel.epp = 0;
 
             // Set Interface
-            curState = stateBuy;
-            setState(curState);
+            setState(stateBuy);
 
             startTimer(60);
         }
@@ -165,6 +164,7 @@ namespace WindowsFormsApp1
         string statePayOff = "PAYOFF";
         private void setState(string state)
         {
+            curState = state;
             if (state == stateBuy)
             {
                 groupBox1.Visible = true;
@@ -217,13 +217,10 @@ namespace WindowsFormsApp1
 
                 int cost = 1200;
                 int payoff = 1100 + (curQuality * 100);
-                if (buyingModel.feedback > 0)
-                    payoff = 1600;
+                if (buyingModel.claim > 0)
+                    payoff = 1600 - 100;
 
                 payoff = payoff - cost;
-
-                if (buyingModel.claim == 1)
-                    payoff = payoff - 100;
 
                 if (buyingModel.rebase == 1 && buyingModel.feedback > 0)
                     payoff = payoff + 100;
