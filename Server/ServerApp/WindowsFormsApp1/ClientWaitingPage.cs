@@ -36,8 +36,9 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SocketUtil.memoryModel.isTest = false;
+
             ClientExperimentPage page = new ClientExperimentPage();
-            SocketUtil.memoryModel.isTest = true;
             page.Show();
             this.Hide();
         }

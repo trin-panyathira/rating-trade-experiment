@@ -88,8 +88,6 @@ namespace WindowsFormsApp1
                 // Finish Experiment
                 if (SocketUtil.memoryModel.isTest)
                 {
-                    SocketUtil.memoryModel.isTest = false;
-
                     ClientWaitingPage page = new ClientWaitingPage();
                     page.Show();
                     this.Hide();
