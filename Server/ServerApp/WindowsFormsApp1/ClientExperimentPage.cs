@@ -116,6 +116,7 @@ namespace WindowsFormsApp1
                 int passedRound = curRound - 1;
                 int countRoundFeedback = passedRound > 5 ? 5 : passedRound;
                 decimal sumFeedback = 0;
+                int countFeedback = 0;
                 for (int i = 0; i < countRoundFeedback; i++)
                 {
                     int lastList = SocketUtil.memoryModel.buyingModelList.Count;
@@ -127,10 +128,15 @@ namespace WindowsFormsApp1
                         countRoundFeedback = countRoundFeedback + 1;
                         continue;
                     }
+                    else if (beforeFeedback <= 0 && countRoundFeedback == passedRound)
+                    {
+                        break;
+                    }
 
                     sumFeedback = sumFeedback + beforeFeedback;
+                    countFeedback = countFeedback + 1;
                 }
-                curRating = sumFeedback / countRoundFeedback;
+                curRating = sumFeedback / countFeedback;
             }
 
             buyingModel = new BuyingModel();
@@ -142,6 +148,7 @@ namespace WindowsFormsApp1
             buyingModel.payoff = 0;
             buyingModel.feedback = -1;
             buyingModel.rebase = SocketUtil.memoryModel.rebase;
+            buyingModel.epp = 0;
 
             // Set Interface
             curState = stateBuy;
