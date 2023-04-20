@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
                 try
                 {
                     decimal actualPaymentAmount = CalculateActualPayment();
-                    labelActualPayment.Text = "Actual Payment is " + actualPaymentAmount.ToString("F") + " THB";
+                    labelActualPayment.Text = "Your Reward " + actualPaymentAmount.ToString("F") + " THB";
                 }
                 catch (Exception ex)
                 {
@@ -91,12 +91,17 @@ namespace WindowsFormsApp1
                     model.claim + "," +
                     model.feedback + "," +
                     model.payoff + "," +
-                    model.rebase + "," +
+                    model.rebate + "," +
                     model.epp;
             }).ToList();
 
             string resultMessage = String.Join("|", resultList);
             SocketUtil.SendMessageToHost(SocketUtil.GetLocalIPAddress(), SEND_RESULT, resultMessage);
+        }
+
+        private void labelActualPayment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

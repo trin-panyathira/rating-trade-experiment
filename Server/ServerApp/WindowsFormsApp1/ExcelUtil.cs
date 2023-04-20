@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
                 oSheet.Cells[rowIndex, 5] = "Claim";
                 oSheet.Cells[rowIndex, 6] = "Feedback";
                 oSheet.Cells[rowIndex, 7] = "Payoff";
-                oSheet.Cells[rowIndex, 8] = "Rebase";
+                oSheet.Cells[rowIndex, 8] = "Rebate";
                 oSheet.Cells[rowIndex, 9] = "Epp";
 
                 //Format A1:D1 as bold, vertical alignment = center.
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
                     oSheet.Cells[rowIndex, 5] = item.claim;
                     oSheet.Cells[rowIndex, 6] = item.feedback;
                     oSheet.Cells[rowIndex, 7] = item.payoff;
-                    oSheet.Cells[rowIndex, 8] = item.rebase;
+                    oSheet.Cells[rowIndex, 8] = item.rebate;
                     oSheet.Cells[rowIndex, 9] = item.epp;
 
                     rowIndex++;

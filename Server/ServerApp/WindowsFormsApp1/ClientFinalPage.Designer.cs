@@ -39,23 +39,24 @@ namespace WindowsFormsApp1
             this.labelActualPayment.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelActualPayment.AutoSize = true;
             this.labelActualPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelActualPayment.Location = new System.Drawing.Point(402, 213);
+            this.labelActualPayment.Location = new System.Drawing.Point(439, 222);
             this.labelActualPayment.Name = "labelActualPayment";
-            this.labelActualPayment.Size = new System.Drawing.Size(411, 33);
+            this.labelActualPayment.Size = new System.Drawing.Size(347, 33);
             this.labelActualPayment.TabIndex = 1;
-            this.labelActualPayment.Text = "Actual Payment is 300.00 THB";
+            this.labelActualPayment.Text = "Your Reward 300.00 THB";
             this.labelActualPayment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelActualPayment.Click += new System.EventHandler(this.labelActualPayment_Click);
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(423, 418);
+            this.label2.Location = new System.Drawing.Point(439, 419);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(352, 33);
+            this.label2.Size = new System.Drawing.Size(359, 33);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Thank you for participated";
+            this.label2.Text = "Thank you for participation\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ClientFinalPage

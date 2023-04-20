@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
             // set Initiate value
             textBoxTestRound.Text = "5";
             textBoxExperimentRound.Text = "20";
-            comboBoxRebase.SelectedIndex = 0;
+            comboBoxRebate.SelectedIndex = 0;
             labelServerAddress.Text = "Server Address: " + SocketUtil.GetLocalIPAddress();
         }
 
@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            listBoxActivity.Items.Insert(0, "Rebase: " + (comboBoxRebase.SelectedIndex == 1 ? "yes" : "no"));
+            listBoxActivity.Items.Insert(0, "Rebate: " + (comboBoxRebate.SelectedIndex == 1 ? "yes" : "no"));
             listBoxActivity.Items.Insert(0, "Test Round: " + textBoxTestRound);
             listBoxActivity.Items.Insert(0, "Experiment Round: " + textBoxTestRound);
             listBoxActivity.Items.Insert(0, "Start Experiment");
@@ -72,7 +72,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < listBoxUser.Items.Count; i++)
             {
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_QUALITY_LIST, randomQualityMessage);
-                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_REBASE, comboBoxRebase.SelectedIndex.ToString());
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_Rebate, comboBoxRebate.SelectedIndex.ToString());
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
 
                 listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");

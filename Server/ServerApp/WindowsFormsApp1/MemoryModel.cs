@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         public List<int> qualityTestList { get; set; } = new List<int>();
         public List<int> qualityExperimentList { get; set; } = new List<int>();
-        public int rebase { get; set; }
+        public int rebate { get; set; }
         public bool isTest { get; set; } = false;
     }
 }

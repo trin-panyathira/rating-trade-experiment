@@ -40,7 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxActivity = new System.Windows.Forms.ListBox();
             this.listBoxUser = new System.Windows.Forms.ListBox();
-            this.comboBoxRebase = new System.Windows.Forms.ComboBox();
+            this.comboBoxRebate = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.comboBoxRebase);
+            this.panel1.Controls.Add(this.comboBoxRebate);
             this.panel1.Controls.Add(this.labelServerAddress);
             this.panel1.Controls.Add(this.textBoxExperimentRound);
             this.panel1.Controls.Add(this.textBoxTestRound);
@@ -158,16 +158,16 @@
             this.listBoxUser.Size = new System.Drawing.Size(219, 576);
             this.listBoxUser.TabIndex = 9;
             // 
-            // comboBoxRebase
+            // comboBoxRebate
             // 
-            this.comboBoxRebase.FormattingEnabled = true;
-            this.comboBoxRebase.Items.AddRange(new object[] {
-            "Without Rebase",
-            "Rebase"});
-            this.comboBoxRebase.Location = new System.Drawing.Point(323, 53);
-            this.comboBoxRebase.Name = "comboBoxRebase";
-            this.comboBoxRebase.Size = new System.Drawing.Size(175, 21);
-            this.comboBoxRebase.TabIndex = 9;
+            this.comboBoxRebate.FormattingEnabled = true;
+            this.comboBoxRebate.Items.AddRange(new object[] {
+            "Without Rebate",
+            "Rebate"});
+            this.comboBoxRebate.Location = new System.Drawing.Point(323, 53);
+            this.comboBoxRebate.Name = "comboBoxRebate";
+            this.comboBoxRebate.Size = new System.Drawing.Size(175, 21);
+            this.comboBoxRebate.TabIndex = 9;
             // 
             // ServerMainPage
             // 
@@ -205,6 +205,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxActivity;
         private System.Windows.Forms.ListBox listBoxUser;
-        private System.Windows.Forms.ComboBox comboBoxRebase;
+        private System.Windows.Forms.ComboBox comboBoxRebate;
     }
 }

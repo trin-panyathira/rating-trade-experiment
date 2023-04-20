@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         public int claim { get; set; }
         public int feedback { get; set; }
         public int payoff { get; set; }
-        public int rebase { get; set; }
+        public int rebate { get; set; }
         public int epp { get; set; }
     }
 }

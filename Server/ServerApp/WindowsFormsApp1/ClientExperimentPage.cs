@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
             buyingModel.claim = -1;
             buyingModel.payoff = 0;
             buyingModel.feedback = -1;
-            buyingModel.rebase = SocketUtil.memoryModel.rebase;
+            buyingModel.rebate = SocketUtil.memoryModel.rebate;
             buyingModel.epp = 0;
 
             // Set Interface
@@ -204,7 +204,7 @@ namespace WindowsFormsApp1
                 labelQuestion1.Visible = true;
                 labelQuestion1.Text = "Do you wants to Claim?";
 
-                if (SocketUtil.memoryModel.rebase == 1)
+                if (SocketUtil.memoryModel.rebate == 1)
                     nextState = statePayOff;
                 else
                     nextState = stateFeedBack;
@@ -230,11 +230,11 @@ namespace WindowsFormsApp1
 
                 payoff = payoff - cost;
 
-                if (buyingModel.rebase == 1 && buyingModel.feedback > 0)
+                if (buyingModel.rebate == 1 && buyingModel.feedback > 0)
                     payoff = payoff + 100;
 
                 buyingModel.payoff = payoff;
-                labelPayoff.Text = "Your payoff is " + payoff;
+                labelPayoff.Text = "Your Payoff For This Round " + payoff;
 
                 nextState = null;
             }
@@ -314,6 +314,11 @@ namespace WindowsFormsApp1
         {
             saveRoundData(buyingModel);
             startNextRound();
+        }
+
+        private void labelQuestion1_Click(object sender, EventArgs e)
+        {
+
         }
 
         //delegate void ActivityCallback(Form f, string text);

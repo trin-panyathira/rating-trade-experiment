@@ -198,11 +198,11 @@ namespace WindowsFormsApp1
 
                 result = "success";
             }
-            else if (instruction == SET_REBASE)
+            else if (instruction == SET_Rebate)
             {
                 // for user
-                Console.WriteLine("Rebase: {0}", value);
-                memoryModel.rebase = int.Parse(value);
+                Console.WriteLine("Rebate: {0}", value);
+                memoryModel.rebate = int.Parse(value);
 
                 result = "success";
             }
@@ -225,7 +225,7 @@ namespace WindowsFormsApp1
                         claim = int.Parse(items[4]),
                         feedback = int.Parse(items[5]),
                         payoff = int.Parse(items[6]),
-                        rebase = int.Parse(items[7]),
+                        rebate = int.Parse(items[7]),
                         epp = int.Parse(items[8])
                     };
                 }).ToList();
