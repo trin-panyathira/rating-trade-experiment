@@ -27,8 +27,7 @@ namespace WindowsFormsApp1
 
         public static MemoryModel memoryModel = new MemoryModel();
 
-        //private static ServerMainPage serverMainPage = null;
-        //private static ClientMainPage clientMainPage = null;
+        public static string hostIpAddress;
         public static bool isServer = false;
 
         // ==========================================================================================================================

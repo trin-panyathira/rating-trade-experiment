@@ -44,6 +44,7 @@ namespace WindowsFormsApp1
             if (isSuccess)
             {
                 SocketUtil.isServer = false;
+                SocketUtil.hostIpAddress = hostAddress;
                 ClientMainPage page = new ClientMainPage();
                 this.Hide();
                 page.Show();

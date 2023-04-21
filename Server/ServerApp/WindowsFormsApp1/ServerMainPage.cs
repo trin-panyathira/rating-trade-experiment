@@ -50,8 +50,8 @@ namespace WindowsFormsApp1
         private void buttonStart_Click(object sender, EventArgs e)
         {
             listBoxActivity.Items.Insert(0, "Rebate: " + (comboBoxRebate.SelectedIndex == 1 ? "yes" : "no"));
-            listBoxActivity.Items.Insert(0, "Test Round: " + textBoxTestRound);
-            listBoxActivity.Items.Insert(0, "Experiment Round: " + textBoxTestRound);
+            listBoxActivity.Items.Insert(0, "Test Round: " + textBoxTestRound.Text);
+            listBoxActivity.Items.Insert(0, "Experiment Round: " + textBoxExperimentRound.Text);
             listBoxActivity.Items.Insert(0, "Start Experiment");
 
             int testRound = 0;
