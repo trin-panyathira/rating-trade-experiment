@@ -28,6 +28,7 @@ namespace WindowsFormsApp1
             textBoxTestRound.Text = "5";
             textBoxExperimentRound.Text = "20";
             comboBoxRebate.SelectedIndex = 0;
+            textBoxPayoffDivideRate.Text = "1";
             labelServerAddress.Text = "Server Address: " + SocketUtil.GetLocalIPAddress();
         }
 
@@ -51,21 +52,46 @@ namespace WindowsFormsApp1
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            listBoxActivity.Items.Insert(0, "Payoff Rate: " + textBoxPayoffDivideRate.Text);
             listBoxActivity.Items.Insert(0, "Rebate: " + (comboBoxRebate.SelectedIndex == 1 ? "yes" : "no"));
             listBoxActivity.Items.Insert(0, "Test Round: " + textBoxTestRound.Text);
             listBoxActivity.Items.Insert(0, "Experiment Round: " + textBoxExperimentRound.Text);
             listBoxActivity.Items.Insert(0, "Start Experiment");
 
             int testRound = 0;
-            int experimentRound = 0;
             try
             {
                 testRound = int.Parse(textBoxTestRound.Text);
-                experimentRound = int.Parse(textBoxExperimentRound.Text);
             }
             catch (Exception ex) 
             {
-                Console.WriteLine("testRound or experimentRound can't convert to number.");
+                Console.WriteLine("testRound can't convert to number.");
+                listBoxActivity.Items.Insert(0, "Warnning! : testRound can't convert to number.");
+                return;
+            }
+
+            int experimentRound = 0;
+            try
+            {
+                experimentRound = int.Parse(textBoxExperimentRound.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("experimentRound can't convert to number.");
+                listBoxActivity.Items.Insert(0, "Warnning! : experimentRound can't convert to number.");
+                return;
+            }
+
+            decimal payoffDivideRate = 1;
+            try
+            {
+                payoffDivideRate = decimal.Parse(textBoxPayoffDivideRate.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("payoffDivideRate can't convert to number.");
+                listBoxActivity.Items.Insert(0, "Warnning! : payoffDivideRate can't convert to number.");
+                return;
             }
 
             // Use this for random same quality each person
@@ -92,6 +118,7 @@ namespace WindowsFormsApp1
 
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_QUALITY_LIST, randomQualityMessage);
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_REBASE, comboBoxRebate.SelectedIndex.ToString());
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_PAYOFF_DIVIDE_RATE, textBoxPayoffDivideRate.Text);
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
 
                 listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");

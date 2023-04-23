@@ -76,8 +76,12 @@ namespace WindowsFormsApp1
                 sumRandomPayoff = sumRandomPayoff + SocketUtil.memoryModel.buyingModelList.ElementAt(index).payoff;
             });
 
+            // payoffDivideRate used to convert from ECU to THB
+            decimal payoffDivideRate = SocketUtil.memoryModel.payoffDivideRate;
+            payoffDivideRate = payoffDivideRate == 0 ? 1 : payoffDivideRate;
+
             // Avg random payoff
-            return sumRandomPayoff / randomRoundQty;
+            return (sumRandomPayoff / randomRoundQty) / payoffDivideRate;
         }
 
         private void SendResultToHost(List<BuyingModel> modelList)

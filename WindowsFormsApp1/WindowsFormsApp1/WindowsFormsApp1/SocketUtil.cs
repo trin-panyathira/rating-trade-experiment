@@ -205,6 +205,14 @@ namespace WindowsFormsApp1
 
                 result = "success";
             }
+            else if (instruction == SET_PAYOFF_DIVIDE_RATE)
+            {
+                // for user
+                Console.WriteLine("Payoff Divide Rate: {0}", value);
+                memoryModel.payoffDivideRate = decimal.Parse(value);
+
+                result = "success";
+            }
             else if (instruction == SUBMIT_RESULT)
             {
                 // for server

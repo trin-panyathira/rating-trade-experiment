@@ -31,6 +31,7 @@
             this.buttonStop = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxRebate = new System.Windows.Forms.ComboBox();
             this.labelServerAddress = new System.Windows.Forms.Label();
             this.textBoxExperimentRound = new System.Windows.Forms.TextBox();
             this.textBoxTestRound = new System.Windows.Forms.TextBox();
@@ -40,7 +41,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxActivity = new System.Windows.Forms.ListBox();
             this.listBoxUser = new System.Windows.Forms.ListBox();
-            this.comboBoxRebate = new System.Windows.Forms.ComboBox();
+            this.textBoxPayoffDivideRate = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +70,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.textBoxPayoffDivideRate);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.comboBoxRebate);
             this.panel1.Controls.Add(this.labelServerAddress);
             this.panel1.Controls.Add(this.textBoxExperimentRound);
@@ -81,10 +85,21 @@
             this.panel1.Size = new System.Drawing.Size(716, 77);
             this.panel1.TabIndex = 5;
             // 
+            // comboBoxRebate
+            // 
+            this.comboBoxRebate.FormattingEnabled = true;
+            this.comboBoxRebate.Items.AddRange(new object[] {
+            "Without Rebate",
+            "Rebate"});
+            this.comboBoxRebate.Location = new System.Drawing.Point(323, 53);
+            this.comboBoxRebate.Name = "comboBoxRebate";
+            this.comboBoxRebate.Size = new System.Drawing.Size(175, 21);
+            this.comboBoxRebate.TabIndex = 9;
+            // 
             // labelServerAddress
             // 
             this.labelServerAddress.AutoSize = true;
-            this.labelServerAddress.Location = new System.Drawing.Point(550, 30);
+            this.labelServerAddress.Location = new System.Drawing.Point(536, 13);
             this.labelServerAddress.Name = "labelServerAddress";
             this.labelServerAddress.Size = new System.Drawing.Size(82, 13);
             this.labelServerAddress.TabIndex = 6;
@@ -158,16 +173,21 @@
             this.listBoxUser.Size = new System.Drawing.Size(219, 576);
             this.listBoxUser.TabIndex = 9;
             // 
-            // comboBoxRebate
+            // textBoxPayoffDivideRate
             // 
-            this.comboBoxRebate.FormattingEnabled = true;
-            this.comboBoxRebate.Items.AddRange(new object[] {
-            "Without Rebate",
-            "Rebate"});
-            this.comboBoxRebate.Location = new System.Drawing.Point(323, 53);
-            this.comboBoxRebate.Name = "comboBoxRebate";
-            this.comboBoxRebate.Size = new System.Drawing.Size(175, 21);
-            this.comboBoxRebate.TabIndex = 9;
+            this.textBoxPayoffDivideRate.Location = new System.Drawing.Point(605, 53);
+            this.textBoxPayoffDivideRate.Name = "textBoxPayoffDivideRate";
+            this.textBoxPayoffDivideRate.Size = new System.Drawing.Size(78, 20);
+            this.textBoxPayoffDivideRate.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(536, 56);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Payoff Rate";
             // 
             // ServerMainPage
             // 
@@ -206,5 +226,7 @@
         private System.Windows.Forms.ListBox listBoxActivity;
         private System.Windows.Forms.ListBox listBoxUser;
         private System.Windows.Forms.ComboBox comboBoxRebate;
+        private System.Windows.Forms.TextBox textBoxPayoffDivideRate;
+        private System.Windows.Forms.Label label5;
     }
 }

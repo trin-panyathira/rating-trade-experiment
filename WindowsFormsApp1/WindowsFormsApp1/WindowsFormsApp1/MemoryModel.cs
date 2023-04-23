@@ -24,5 +24,6 @@ namespace WindowsFormsApp1
         public List<int> qualityExperimentList { get; set; } = new List<int>();
         public int rebate { get; set; }
         public bool isTest { get; set; } = false;
+        public decimal payoffDivideRate { get; set; } = 1;
     }
 }

@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
         public static string SET_STOP { get; set; } = "SET_STOP";
         public static string SET_QUALITY_LIST { get; set; } = "SET_QUALITY_LIST";
         public static string SET_REBASE { get; set; } = "SET_REBASE";
+        public static string SET_PAYOFF_DIVIDE_RATE { get; set; } = "SET_PAYOFF_DIVIDE_RATE";
         public static string SUBMIT_RESULT { get; set; } = "SUBMIT_RESULT";
     }
 }
