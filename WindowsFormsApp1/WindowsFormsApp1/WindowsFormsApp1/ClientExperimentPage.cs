@@ -115,6 +115,14 @@ namespace WindowsFormsApp1
             {
                 curRating = -1;
             }
+            else if (curRound <= 5)
+            {
+                // random rating for first 5 rounds
+                Random rnd = new Random();
+
+                int maxRating = 5;
+                curRating = (rnd.Next() % maxRating) + 1;
+            }
             else
             {
                 int passedRound = curRound - 1;
@@ -141,9 +149,9 @@ namespace WindowsFormsApp1
                     countFeedback = countFeedback + 1;
                 }
 
-                if(countFeedback > 0)
+                if (countFeedback > 0)
                     curRating = sumFeedback / countFeedback;
-                else 
+                else
                     curRating = -1;
             }
 

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
@@ -40,6 +41,7 @@ namespace WindowsFormsApp1
             if (this.Visible == true)
             {
                 SocketUtil.memoryModel.serverMainPage = this;
+                SocketUtil.memoryModel.clientSubmittedModelList = new List<ClientSubmittedModel>();
 
                 // start sever
                 SocketUtil.isServer = true;
@@ -66,18 +68,35 @@ namespace WindowsFormsApp1
                 Console.WriteLine("testRound or experimentRound can't convert to number.");
             }
 
-            List<int> qualityList = randomQuality(testRound + experimentRound);
-            string randomQualityMessage = testRound + "," + experimentRound + "," + string.Join(",", qualityList);
+            // Use this for random same quality each person
+            #region
+            //List<int> qualityList = randomQuality(testRound + experimentRound);
+            //string randomQualityMessage = testRound + "," + experimentRound + "," + string.Join(",", qualityList);
 
+            //for (int i = 0; i < listBoxUser.Items.Count; i++)
+            //{
+            //    SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_QUALITY_LIST, randomQualityMessage);
+            //    SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_Rebate, comboBoxRebate.SelectedIndex.ToString());
+            //    SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
+
+            //    listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");
+            //}
+            #endregion
+
+            // Use this for random unique quality each person
+            #region
             for (int i = 0; i < listBoxUser.Items.Count; i++)
             {
+                List<int> qualityList = randomQuality(testRound + experimentRound);
+                string randomQualityMessage = testRound + "," + experimentRound + "," + string.Join(",", qualityList);
+
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_QUALITY_LIST, randomQualityMessage);
-                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_Rebate, comboBoxRebate.SelectedIndex.ToString());
+                SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_REBASE, comboBoxRebate.SelectedIndex.ToString());
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
 
                 listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");
             }
-            buttonStart.Enabled = false;
+            #endregion
 
         }
 
@@ -85,12 +104,15 @@ namespace WindowsFormsApp1
         {
             listBoxActivity.Items.Insert(0, "Stop Experiment.");
 
+
+            // Save excel by thread
+            ExcelUtil.ExportSummaryExcel(SocketUtil.memoryModel.clientSubmittedModelList);
+            SocketUtil.memoryModel.clientSubmittedModelList = new List<ClientSubmittedModel>();
+
             for (int i = 0; i < listBoxUser.Items.Count; i++)
             {
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_STOP, "");
             }
-
-            buttonStart.Enabled = true;
         }
 
         private void ServerMainPage_FormClosing(object sender, FormClosingEventArgs e)

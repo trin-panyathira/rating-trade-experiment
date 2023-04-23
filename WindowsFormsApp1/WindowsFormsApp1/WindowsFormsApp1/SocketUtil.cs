@@ -197,7 +197,7 @@ namespace WindowsFormsApp1
 
                 result = "success";
             }
-            else if (instruction == SET_Rebate)
+            else if (instruction == SET_REBASE)
             {
                 // for user
                 Console.WriteLine("Rebate: {0}", value);
@@ -205,7 +205,7 @@ namespace WindowsFormsApp1
 
                 result = "success";
             }
-            else if (instruction == SEND_RESULT)
+            else if (instruction == SUBMIT_RESULT)
             {
                 // for server
                 Console.WriteLine("Result : {0}", value);
@@ -228,6 +228,12 @@ namespace WindowsFormsApp1
                         epp = int.Parse(items[8])
                     };
                 }).ToList();
+
+                // Save client result for export summary
+                ClientSubmittedModel clientResilt = new ClientSubmittedModel();
+                clientResilt.address = clientAddress;
+                clientResilt.buyingModelList = resultList;
+                memoryModel.clientSubmittedModelList.Add(clientResilt);
 
                 // Save excel by thread
                 Thread serverThread = new Thread(() => ExcelUtil.ExportExcel(resultList, clientAddress));

@@ -44,15 +44,13 @@ namespace WindowsFormsApp1
                 oSheet.Cells[rowIndex, 7] = "Payoff";
                 oSheet.Cells[rowIndex, 8] = "Rebate";
                 oSheet.Cells[rowIndex, 9] = "Epp";
+                rowIndex++;
 
                 //Format A1:D1 as bold, vertical alignment = center.
                 oSheet.get_Range("A1", "I1").Font.Bold = true;
                 oSheet.get_Range("A1", "I1").VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
 
-                // Create an array to multiple values at once.
-                string[,] saNames = new string[resultList.Count, 9];
-                
-                rowIndex++;
+
                 resultList.ForEach(item =>
                 {
                     oSheet.Cells[rowIndex, 1] = item.round;
@@ -78,6 +76,91 @@ namespace WindowsFormsApp1
                 string folderPath = Directory.GetCurrentDirectory();
                 string fileName = "result_" + address.Replace(".", "-") + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx";
                 string filePath = folderPath + "\\excel_result\\" + fileName;
+                Console.WriteLine("Save File: {0}", filePath);
+                oWB.SaveAs(filePath, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                    false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
+                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                oWB.Close();
+                oXL.Quit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Write Excel Error: " + e.Message);
+            }
+        }
+        public static void ExportSummaryExcel(List<ClientSubmittedModel> clientSubmittedModelList)
+        {
+            Microsoft.Office.Interop.Excel.Application oXL;
+            Microsoft.Office.Interop.Excel._Workbook oWB;
+            Microsoft.Office.Interop.Excel._Worksheet oSheet;
+            Microsoft.Office.Interop.Excel.Range oRng;
+            object misvalue = System.Reflection.Missing.Value;
+
+            try
+            {
+                //Start Excel and get Application object.
+                oXL = new Microsoft.Office.Interop.Excel.Application();
+                oXL.Visible = false;
+
+                //Get a new workbook.
+                oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Add(""));
+                oSheet = (Microsoft.Office.Interop.Excel._Worksheet)oWB.ActiveSheet;
+
+                //Add table headers going cell by cell.
+                int rowIndex = 1;
+                oSheet.Cells[rowIndex, 1] = "User No";
+                oSheet.Cells[rowIndex, 2] = "IP";
+                oSheet.Cells[rowIndex, 3] = "Round";
+                oSheet.Cells[rowIndex, 4] = "Quality";
+                oSheet.Cells[rowIndex, 5] = "Rating";
+                oSheet.Cells[rowIndex, 6] = "Buy";
+                oSheet.Cells[rowIndex, 7] = "Claim";
+                oSheet.Cells[rowIndex, 8] = "Feedback";
+                oSheet.Cells[rowIndex, 9] = "Payoff";
+                oSheet.Cells[rowIndex, 10] = "Rebate";
+                oSheet.Cells[rowIndex, 11] = "Epp";
+                rowIndex++;
+
+                //Format A1:D1 as bold, vertical alignment = center.
+                oSheet.get_Range("A1", "K1").Font.Bold = true;
+                oSheet.get_Range("A1", "K1").VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+
+                int clientNo = 1;
+                clientSubmittedModelList.ForEach(clientSubmittedModel =>
+                {
+                    string address = clientSubmittedModel.address;
+                    List<BuyingModel> resultList = clientSubmittedModel.buyingModelList;
+
+                    resultList.ForEach(item =>
+                    {
+                        oSheet.Cells[rowIndex, 1] = clientNo;
+                        oSheet.Cells[rowIndex, 2] = address;
+                        oSheet.Cells[rowIndex, 3] = item.round;
+                        oSheet.Cells[rowIndex, 4] = item.quality;
+                        oSheet.Cells[rowIndex, 5] = item.rating;
+                        oSheet.Cells[rowIndex, 6] = item.buy;
+                        oSheet.Cells[rowIndex, 7] = item.claim;
+                        oSheet.Cells[rowIndex, 8] = item.feedback;
+                        oSheet.Cells[rowIndex, 9] = item.payoff;
+                        oSheet.Cells[rowIndex, 10] = item.rebate;
+                        oSheet.Cells[rowIndex, 11] = item.epp;
+
+                        rowIndex++;
+                    });
+                    clientNo++;
+                });
+
+                //AutoFit columns A:D.
+                oRng = oSheet.get_Range("A1", "K1");
+                oRng.EntireColumn.AutoFit();
+
+                oXL.Visible = false;
+                oXL.UserControl = false;
+
+                string folderPath = Directory.GetCurrentDirectory();
+                string fileName = "summary_result_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx";
+                string filePath = folderPath + "\\excel_summary_result\\" + fileName;
                 Console.WriteLine("Save File: {0}", filePath);
                 oWB.SaveAs(filePath, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                     false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,

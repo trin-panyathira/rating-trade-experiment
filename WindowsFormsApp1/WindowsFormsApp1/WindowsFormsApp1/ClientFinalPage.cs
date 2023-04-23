@@ -96,7 +96,7 @@ namespace WindowsFormsApp1
             }).ToList();
 
             string resultMessage = String.Join("|", resultList);
-            SocketUtil.SendMessageToHost(SocketUtil.hostIpAddress, SEND_RESULT, resultMessage);
+            SocketUtil.SendMessageToHost(SocketUtil.hostIpAddress, SUBMIT_RESULT, resultMessage);
         }
 
         private void labelActualPayment_Click(object sender, EventArgs e)

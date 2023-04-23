@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientSubmittedModel.cs" />
     <Compile Include="BuyingModel.cs" />
     <Compile Include="ClientExperimentPage.cs">
       <SubType>Form</SubType>

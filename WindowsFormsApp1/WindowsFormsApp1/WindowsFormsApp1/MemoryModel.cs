@@ -8,8 +8,11 @@ namespace WindowsFormsApp1
 {
     internal class MemoryModel
     {
+        // Server
         public ServerMainPage serverMainPage = null;
+        public List<ClientSubmittedModel> clientSubmittedModelList = null;
 
+        // Client
         public ClientMainPage clientMainPage = null;
         public ClientExperimentPage clientExperimentPage = null;
         public ClientWaitingPage clientWaitingPage = null;
