@@ -107,7 +107,7 @@ namespace WindowsFormsApp1
 
             // Save excel by thread
             ExcelUtil.ExportSummaryExcel(SocketUtil.memoryModel.clientSubmittedModelList);
-            SocketUtil.memoryModel.clientSubmittedModelList = new List<ClientSubmittedModel>();
+            SocketUtil.memoryModel.clientSubmittedModelList.Clear();
 
             for (int i = 0; i < listBoxUser.Items.Count; i++)
             {
