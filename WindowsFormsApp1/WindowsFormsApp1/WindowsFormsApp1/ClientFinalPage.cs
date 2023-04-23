@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < randomRoundQty; i++)
             {
                 Random rnd = new Random();
-                int randomIndex = rnd.Next() % indexList.Count();
+                int randomIndex = rnd.Next(1, indexList.Count());
                 int index = indexList.ElementAt(randomIndex);
 
                 randomPayoffIndex.Add(index);

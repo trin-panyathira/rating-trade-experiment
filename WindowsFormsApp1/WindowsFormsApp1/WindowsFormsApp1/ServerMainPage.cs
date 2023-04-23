@@ -150,10 +150,12 @@ namespace WindowsFormsApp1
         private List<int> randomQuality(int qty)
         {
             Random rnd = new Random();
+            int maxQuality = 5;
+
             List<int> qualityList = new List<int>();
             for (int i = 0; i < qty; i++)
             {
-                int quality = rnd.Next() % 5 + 1;
+                int quality = rnd.Next(1, maxQuality + 1);
                 qualityList.Add(quality);
             }
             return qualityList;

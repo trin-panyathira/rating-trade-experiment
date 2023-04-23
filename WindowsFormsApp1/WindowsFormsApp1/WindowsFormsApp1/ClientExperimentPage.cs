@@ -82,6 +82,8 @@ namespace WindowsFormsApp1
         BuyingModel buyingModel;
         private void startNextRound()
         {
+            Random rnd = new Random();
+
             int lastRound = qualityList.Count;
             if (curRound == lastRound)
             {
@@ -118,10 +120,8 @@ namespace WindowsFormsApp1
             else if (curRound <= 5)
             {
                 // random rating for first 5 rounds
-                Random rnd = new Random();
-
                 int maxRating = 5;
-                curRating = (rnd.Next() % maxRating) + 1;
+                curRating = rnd.Next(1, maxRating + 1);
             }
             else
             {
