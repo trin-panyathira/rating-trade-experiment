@@ -52,11 +52,11 @@ namespace WindowsFormsApp1
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            listBoxActivity.Items.Insert(0, "Payoff Rate: " + textBoxPayoffDivideRate.Text);
-            listBoxActivity.Items.Insert(0, "Rebate: " + (comboBoxRebate.SelectedIndex == 1 ? "yes" : "no"));
-            listBoxActivity.Items.Insert(0, "Test Round: " + textBoxTestRound.Text);
-            listBoxActivity.Items.Insert(0, "Experiment Round: " + textBoxExperimentRound.Text);
-            listBoxActivity.Items.Insert(0, "Start Experiment");
+            listBoxActivity.Items.Add("Payoff Rate: " + textBoxPayoffDivideRate.Text);
+            listBoxActivity.Items.Add("Rebate: " + (comboBoxRebate.SelectedIndex == 1 ? "yes" : "no"));
+            listBoxActivity.Items.Add("Test Round: " + textBoxTestRound.Text);
+            listBoxActivity.Items.Add("Experiment Round: " + textBoxExperimentRound.Text);
+            listBoxActivity.Items.Add("Start Experiment");
 
             int testRound = 0;
             try
@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
             catch (Exception ex) 
             {
                 Console.WriteLine("testRound can't convert to number.");
-                listBoxActivity.Items.Insert(0, "Warnning! : testRound can't convert to number.");
+                listBoxActivity.Items.Add("Warnning! : testRound can't convert to number.");
                 return;
             }
 
@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 Console.WriteLine("experimentRound can't convert to number.");
-                listBoxActivity.Items.Insert(0, "Warnning! : experimentRound can't convert to number.");
+                listBoxActivity.Items.Add("Warnning! : experimentRound can't convert to number.");
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
             catch (Exception ex)
             {
                 Console.WriteLine("payoffDivideRate can't convert to number.");
-                listBoxActivity.Items.Insert(0, "Warnning! : payoffDivideRate can't convert to number.");
+                listBoxActivity.Items.Add("Warnning! : payoffDivideRate can't convert to number.");
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace WindowsFormsApp1
             //    SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_Rebate, comboBoxRebate.SelectedIndex.ToString());
             //    SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
 
-            //    listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");
+            //    listBoxActivity.Items.Add("User " + listBoxUser.Items[i].ToString() + " started");
             //}
             #endregion
 
@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_PAYOFF_DIVIDE_RATE, textBoxPayoffDivideRate.Text);
                 SocketUtil.SendMessageToHost(listBoxUser.Items[i].ToString(), SET_START, "");
 
-                listBoxActivity.Items.Insert(0, "User " + listBoxUser.Items[i].ToString() + " started");
+                listBoxActivity.Items.Add("User " + listBoxUser.Items[i].ToString() + " started");
             }
             #endregion
 
@@ -129,7 +129,7 @@ namespace WindowsFormsApp1
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
-            listBoxActivity.Items.Insert(0, "Stop Experiment.");
+            listBoxActivity.Items.Add("Stop Experiment.");
 
 
             // Save excel by thread
