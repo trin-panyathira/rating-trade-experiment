@@ -212,16 +212,18 @@ namespace WindowsFormsApp1
                 labelQuestion1.Visible = true;
                 labelQuestion1.Text = "Do you wants to Claim?";
 
-                if (SocketUtil.memoryModel.rebate == 1)
-                    nextState = statePayOff;
-                else
-                    nextState = stateFeedBack;
+                nextState = stateFeedBack;
             }
             else if (state == stateFeedBack)
             {
                 groupBox1.Visible = false;
                 groupBox2.Visible = true;
                 groupBox3.Visible = false;
+
+                if (SocketUtil.memoryModel.rebate == 1)
+                    labelRewardRebate.Visible = true;
+                else
+                    labelRewardRebate.Visible = false;
 
                 nextState = statePayOff;
             }
@@ -232,14 +234,18 @@ namespace WindowsFormsApp1
                 groupBox3.Visible = true;
 
                 int cost = 1200;
-                int payoff = 1100 + (curQuality * 100);
-                if (buyingModel.claim > 0)
-                    payoff = 1600 - 100;
+                int payoff = 0;
+                if (buyingModel.buy == 1)
+                {
+                    payoff = 1100 + (curQuality * 100);
+                    if (buyingModel.claim > 0)
+                        payoff = 1600 - 100;
 
-                payoff = payoff - cost;
+                    payoff = payoff - cost;
 
-                if (buyingModel.rebate == 1 && buyingModel.feedback > 0)
-                    payoff = payoff + 100;
+                    if (buyingModel.rebate == 1 && buyingModel.feedback > 0)
+                        payoff = payoff + 100;
+                }
 
                 buyingModel.payoff = payoff;
                 labelPayoff.Text = "Your Payoff For This Round " + payoff;

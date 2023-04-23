@@ -179,11 +179,11 @@ namespace WindowsFormsApp1
             this.labelRewardRebate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelRewardRebate.AutoSize = true;
             this.labelRewardRebate.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelRewardRebate.Location = new System.Drawing.Point(411, 149);
+            this.labelRewardRebate.Location = new System.Drawing.Point(418, 149);
             this.labelRewardRebate.Name = "labelRewardRebate";
-            this.labelRewardRebate.Size = new System.Drawing.Size(383, 42);
+            this.labelRewardRebate.Size = new System.Drawing.Size(447, 42);
             this.labelRewardRebate.TabIndex = 14;
-            this.labelRewardRebate.Text = "Your reward rebate is";
+            this.labelRewardRebate.Text = "Your reward rebate is 100";
             this.labelRewardRebate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonRating0

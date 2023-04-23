@@ -80,8 +80,10 @@ namespace WindowsFormsApp1
             decimal payoffDivideRate = SocketUtil.memoryModel.payoffDivideRate;
             payoffDivideRate = payoffDivideRate == 0 ? 1 : payoffDivideRate;
 
+            decimal basePayoff = 50;
+
             // Avg random payoff
-            return (sumRandomPayoff / randomRoundQty) / payoffDivideRate;
+            return basePayoff + ((sumRandomPayoff / randomRoundQty) / payoffDivideRate);
         }
 
         private void SendResultToHost(List<BuyingModel> modelList)

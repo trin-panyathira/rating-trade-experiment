@@ -173,7 +173,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                listBoxActivity.Items.Insert(0, text);
+                listBoxActivity.Items.Add(text);
             }
         }
 
