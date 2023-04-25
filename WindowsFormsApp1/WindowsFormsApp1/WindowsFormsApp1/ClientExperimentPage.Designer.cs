@@ -62,11 +62,11 @@ namespace WindowsFormsApp1
             this.labelRating1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelRating1.AutoSize = true;
             this.labelRating1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelRating1.Location = new System.Drawing.Point(454, 107);
+            this.labelRating1.Location = new System.Drawing.Point(481, 107);
             this.labelRating1.Name = "labelRating1";
-            this.labelRating1.Size = new System.Drawing.Size(295, 42);
+            this.labelRating1.Size = new System.Drawing.Size(326, 42);
             this.labelRating1.TabIndex = 1;
-            this.labelRating1.Text = "Seller’s Rating is";
+            this.labelRating1.Text = "Seller’s Rating is 5";
             this.labelRating1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTimer
@@ -126,11 +126,11 @@ namespace WindowsFormsApp1
             this.labelQuestion1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelQuestion1.AutoSize = true;
             this.labelQuestion1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelQuestion1.Location = new System.Drawing.Point(357, 396);
+            this.labelQuestion1.Location = new System.Drawing.Point(339, 396);
             this.labelQuestion1.Name = "labelQuestion1";
-            this.labelQuestion1.Size = new System.Drawing.Size(606, 42);
+            this.labelQuestion1.Size = new System.Drawing.Size(637, 42);
             this.labelQuestion1.TabIndex = 3;
-            this.labelQuestion1.Text = "Do you want to place buying order?";
+            this.labelQuestion1.Text = "Do you want to place a buying order?";
             this.labelQuestion1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelQuestion1.Click += new System.EventHandler(this.labelQuestion1_Click);
             // 
@@ -139,11 +139,11 @@ namespace WindowsFormsApp1
             this.labelQuality1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelQuality1.AutoSize = true;
             this.labelQuality1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelQuality1.Location = new System.Drawing.Point(578, 191);
+            this.labelQuality1.Location = new System.Drawing.Point(235, 184);
             this.labelQuality1.Name = "labelQuality1";
-            this.labelQuality1.Size = new System.Drawing.Size(171, 42);
+            this.labelQuality1.Size = new System.Drawing.Size(853, 42);
             this.labelQuality1.TabIndex = 2;
-            this.labelQuality1.Text = "Quality is";
+            this.labelQuality1.Text = "Quality of the goods you receive for your order is 5";
             this.labelQuality1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelRound
@@ -179,11 +179,11 @@ namespace WindowsFormsApp1
             this.labelRewardRebate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelRewardRebate.AutoSize = true;
             this.labelRewardRebate.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelRewardRebate.Location = new System.Drawing.Point(418, 149);
+            this.labelRewardRebate.Location = new System.Drawing.Point(252, 149);
             this.labelRewardRebate.Name = "labelRewardRebate";
-            this.labelRewardRebate.Size = new System.Drawing.Size(447, 42);
+            this.labelRewardRebate.Size = new System.Drawing.Size(771, 42);
             this.labelRewardRebate.TabIndex = 14;
-            this.labelRewardRebate.Text = "Your reward rebate is 100";
+            this.labelRewardRebate.Text = "Your reward rebate for giving feedback is 100";
             this.labelRewardRebate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonRating0
@@ -284,11 +284,11 @@ namespace WindowsFormsApp1
             this.labelPayoff.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelPayoff.AutoSize = true;
             this.labelPayoff.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.labelPayoff.Location = new System.Drawing.Point(337, 272);
+            this.labelPayoff.Location = new System.Drawing.Point(328, 261);
             this.labelPayoff.Name = "labelPayoff";
-            this.labelPayoff.Size = new System.Drawing.Size(481, 42);
+            this.labelPayoff.Size = new System.Drawing.Size(561, 42);
             this.labelPayoff.TabIndex = 13;
-            this.labelPayoff.Text = "Your Payoff For This Round";
+            this.labelPayoff.Text = "Your payoff for this round 100.00";
             this.labelPayoff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ClientExperimentPage

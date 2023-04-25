@@ -196,7 +196,7 @@ namespace WindowsFormsApp1
                 labelQuality1.Visible = false;
 
                 labelQuestion1.Visible = true;
-                labelQuestion1.Text = "Do you wants to place buying order?";
+                labelQuestion1.Text = "Do you wants to place a buying order?";
 
                 nextState = stateClaim;
             }
@@ -207,10 +207,10 @@ namespace WindowsFormsApp1
                 groupBox3.Visible = false;
 
                 labelQuality1.Visible = true;
-                labelQuality1.Text = "Quality is " + curQuality;
+                labelQuality1.Text = "Quality of the goods you receive for your order is " + curQuality;
 
                 labelQuestion1.Visible = true;
-                labelQuestion1.Text = "Do you wants to Claim?";
+                labelQuestion1.Text = "Do you wants to claim the goods?";
 
                 nextState = stateFeedBack;
             }
