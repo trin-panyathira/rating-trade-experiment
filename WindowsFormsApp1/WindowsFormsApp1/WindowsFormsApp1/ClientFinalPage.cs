@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
                 try
                 {
                     decimal actualPaymentAmount = CalculateActualPayment();
-                    labelActualPayment.Text = "Your Reward " + actualPaymentAmount.ToString("F") + " THB";
+                    labelActualPayment.Text = "Your final payment for this experiment is " + actualPaymentAmount.ToString("F") + " THB";
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
             decimal basePayoff = 50;
 
             // Avg random payoff
-            return basePayoff + ((sumRandomPayoff / randomRoundQty) / payoffDivideRate);
+            return basePayoff + ((sumRandomPayoff / randomRoundQty) * payoffDivideRate);
         }
 
         private void SendResultToHost(List<BuyingModel> modelList)
