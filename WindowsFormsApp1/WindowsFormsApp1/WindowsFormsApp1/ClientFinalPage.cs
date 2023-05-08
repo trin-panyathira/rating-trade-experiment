@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
             decimal payoffDivideRate = SocketUtil.memoryModel.payoffDivideRate;
             payoffDivideRate = payoffDivideRate == 0 ? 1 : payoffDivideRate;
 
-            decimal basePayoff = 50;
+            decimal basePayoff = 100;
 
             // Avg random payoff
             return basePayoff + ((sumRandomPayoff / randomRoundQty) * payoffDivideRate);
